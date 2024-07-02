@@ -378,7 +378,6 @@
 "Assets/Scripts/HealthManager.cs"
 "Assets/Scripts/ManaManager.cs"
 "Assets/Scripts/PlayerController.cs"
-"Assets/Scripts/Tester.cs"
 -langversion:9.0
 
 /deterministic
