@@ -4,6 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 public class HealthManager : MonoBehaviour
 {
+    // Fixes, Add Collision Detector to this script at bottom
+    // Set The Detection Type To Bullet Tag and add this tag to bullet prefab
+    // Set the Source Image for the health Bar, Image Type Filled
+    // Horizontal, Left, 1
+
+
+
+
+
     public Image HealthBar;
     public float HealthAmount = 100f;
 
@@ -19,6 +28,7 @@ public class HealthManager : MonoBehaviour
         if (HealthAmount <= 0)
         {
             Debug.Log("Hit");
+            Destroy(gameObject);
         }
 
         if (Input.GetKeyDown(KeyCode.Return))
@@ -39,5 +49,31 @@ public class HealthManager : MonoBehaviour
         HealthAmount = Mathf.Clamp(HealthAmount, 0, 100);
 
         HealthBar.fillAmount = HealthAmount / 100;
+    }
+
+
+
+     void OnTriggerEnter2D(Collider2D collision)
+    {
+       
+    
+
+       
+        
+        //Check for a match with the specified name on any GameObject that collides with your GameObject
+        if (collision.gameObject.tag == "Bullet")
+        {
+            //If the GameObject's name matches the one you suggest, output this message in the console
+           
+            TakeDamage(20f);
+            Debug.Log("Bullet Hit Skeleton");
+            
+            
+
+           
+        }
+
+
+
     }
 }
