@@ -380,8 +380,10 @@
 "Assets/Scripts/EnemyAI.cs"
 "Assets/Scripts/HealthBar.cs"
 "Assets/Scripts/HealthManager.cs"
+"Assets/Scripts/LoadingScreen.cs"
 "Assets/Scripts/ManaManager.cs"
 "Assets/Scripts/PlayerController.cs"
+"Assets/Scripts/Respawn.cs"
 "Assets/Scripts/SimpleShooting.cs"
 -langversion:9.0
 
