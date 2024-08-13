@@ -56,5 +56,10 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "MVP.sln"
+    "dotnet.defaultSolution": "MVP.sln",
+    "workbench.colorCustomizations": {
+        "[Default Dark Modern]": {}
+    },
+    "workbench.colorTheme": "Visual Studio Dark",
+    "workbench.iconTheme": "vs-seti"
 }

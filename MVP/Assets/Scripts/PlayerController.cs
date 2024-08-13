@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 
 {
-    public float yRange = 7.5f;
-    public float xRange = 17.25f;
+
+    //movement 
+    public float yRange = 9.5f;
+    public float xRange = 18f;
     private Rigidbody2D rb;
 
     public float moveSpeed;
@@ -20,6 +22,12 @@ public class PlayerController : MonoBehaviour
     private float DashCooldownCounter;
     
     private Vector2 moveDirection;
+
+    // Attack Variables
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform firingPoint;
+
+    private Vector2 mousepos;
     
     // Start is called before the first frame update
     void Start()
@@ -31,7 +39,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // PLAYER MOVEMENT
 
         if (transform.position.x > xRange) {
 
@@ -51,8 +59,11 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
         }
         moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+        // MOUSE POSITION
         
-    
+        
+        // DASH MECHANICS
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -78,7 +89,11 @@ public class PlayerController : MonoBehaviour
         {
             DashCooldownCounter -= Time.deltaTime;
         }
+        // FIRING MECHANICS
 
+        if (Input.GetMouseButtonDown(0)) {
+            shoot();
+        }
     }
 
     void FixedUpdate () 
@@ -86,4 +101,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = moveDirection * moveSpeed;
     }
     
+    public void shoot () {
+        Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
+    }
 }
