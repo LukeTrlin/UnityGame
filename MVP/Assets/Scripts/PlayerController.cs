@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
 
     //movement 
+
+    public Transform bulletTransform;
     public float yRange = 9.5f;
     public float xRange = 18f;
     private Rigidbody2D rb;
@@ -24,21 +26,25 @@ public class PlayerController : MonoBehaviour
     private Vector2 moveDirection;
 
     // Attack Variables
-    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Rigidbody2D bulletPrefab;
     [SerializeField] private Transform firingPoint;
 
-    private Vector2 mousepos;
+
     
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         ActiveMoveSpeed = moveSpeed;
+   
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
+       
         // PLAYER MOVEMENT
 
         if (transform.position.x > xRange) {
@@ -59,9 +65,6 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(-xRange, transform.position.y, transform.position.z);
         }
         moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
-        // MOUSE POSITION
-        
         
         // DASH MECHANICS
         
@@ -102,6 +105,8 @@ public class PlayerController : MonoBehaviour
     }
     
     public void shoot () {
-        Instantiate(bulletPrefab, firingPoint.position, firingPoint.rotation);
+    
+        Instantiate(bulletPrefab, bulletTransform.position, Quaternion.identity);
+
     }
 }

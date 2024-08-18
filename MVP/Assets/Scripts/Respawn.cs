@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Respawn : MonoBehaviour
 {
+    public TMP_Text text;
+    public GameObject image;
     public GameObject Enemy;
     public int enemyCount = 5;
     private HealthManager healthManager;
@@ -20,6 +23,10 @@ public class Respawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        text.SetText("Enemies Remaining:", enemyCount);
+        
+
+
         if (enemyCount > 0)
         {
             if (healthManager.HealthAmount == 0)
@@ -34,6 +41,8 @@ public class Respawn : MonoBehaviour
 
         else {
             Enemy.SetActive(false);
+            image.SetActive(true);
+            
         }
         
         
