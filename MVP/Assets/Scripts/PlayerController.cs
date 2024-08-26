@@ -41,7 +41,8 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+
 
 
        
@@ -87,11 +88,12 @@ public class PlayerController : MonoBehaviour
                 DashCounter = DashCooldown;
             }
         }
-
+        
         if (DashCooldownCounter > 0)
         {
             DashCooldownCounter -= Time.deltaTime;
         }
+
         // FIRING MECHANICS
 
         if (Input.GetMouseButtonDown(0)) {

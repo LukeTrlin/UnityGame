@@ -17,10 +17,9 @@ public class ManaManager : MonoBehaviour
     void Update()
     {
         // Mana Regeneration
-        ManaRestore(0.05f);
+        ManaRestore(0.5f);
 
-
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0));
         {
             ManaDrain(20);
         }

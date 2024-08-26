@@ -33,11 +33,8 @@ public class CollisionDetector : MonoBehaviour
             //If the GameObject's name matches the one you suggest, output this message in the console
            
             Destroy(gameObject);
-            
-            
-
-           
         }
+
 
 
 
