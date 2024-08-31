@@ -31,10 +31,23 @@ public class Respawn : MonoBehaviour
         {
             if (healthManager.HealthAmount == 0)
             {
+                StartCoroutine(waiter());
+                Enemy.transform.position = new Vector3(1000,0,0);
+                
+            
                 healthManager.HealthAmount += 100;
                 HealthBar.fillAmount = HealthAmount / 100f;
                 enemyCount -= 1;
-                Enemy.transform.position = new Vector3(0,0,0);
+                IEnumerator waiter()
+                {
+                    yield return new WaitForSeconds(1);
+                    Enemy.transform.position = new Vector3(0,0,0);
+                    
+                    
+                    
+                }
+                
+                
                 
             }
         }

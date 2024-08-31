@@ -17,19 +17,14 @@ public class ManaManager : MonoBehaviour
     void Update()
     {
         // Mana Regeneration
-        ManaRestore(0.5f);
+        
+        ManaRestore(0.3f);
+       
 
-        if (Input.GetKeyDown(KeyCode.Mouse0));
-        {
-            ManaDrain(20);
-        }
-
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            ManaRestore(5);
-        }
+       
 
     }
+    
 
     public void ManaDrain(float damage)
     {
@@ -44,4 +39,7 @@ public class ManaManager : MonoBehaviour
 
         ManaBar.fillAmount = ManaAmount / 100;
     }
+
+    
+
 }

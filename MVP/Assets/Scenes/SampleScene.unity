@@ -217,7 +217,7 @@ GameObject:
   - component: {fileID: 229032762}
   m_Layer: 0
   m_Name: SkeletonEnemySword
-  m_TagString: Enemy
+  m_TagString: Skeleton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8640aa7e1e87296469f3e7ff4bb85655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 8
 --- !u!50 &229032758
 Rigidbody2D:
   serializedVersion: 4
@@ -2164,7 +2164,7 @@ RectTransform:
   m_GameObject: {fileID: 785322552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 19.207, y: 7.1566, z: 1}
+  m_LocalScale: {x: 19.207, y: 10.833661, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 581528313}
@@ -2172,7 +2172,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 11.768}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &785322554
@@ -2227,7 +2227,7 @@ GameObject:
   - component: {fileID: 805211222}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2424,6 +2424,7 @@ GameObject:
   - component: {fileID: 985785943}
   - component: {fileID: 985785944}
   - component: {fileID: 985785946}
+  - component: {fileID: 985785947}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2559,6 +2560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0eda1bd3a880a243896e133be875fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manaBar: {fileID: 1394330768}
   bulletTransform: {fileID: 1025630388}
   yRange: 8
   xRange: 18
@@ -2608,7 +2610,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2632,6 +2634,19 @@ PolygonCollider2D:
       - {x: 0.5, y: 0.1875}
       - {x: 0.25, y: 0.5}
   m_UseDelaunayMesh: 0
+--- !u!114 &985785947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985785935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2aa2602f98f0c44eb79b1dfc51c159d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthbar: {fileID: 1939788148}
 --- !u!1 &1025630387
 GameObject:
   m_ObjectHideFlags: 0
@@ -2730,7 +2745,7 @@ GameObject:
   - component: {fileID: 1041422579}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3200,6 +3215,8 @@ GameObject:
   - component: {fileID: 1394330770}
   - component: {fileID: 1394330769}
   - component: {fileID: 1394330768}
+  - component: {fileID: 1394330772}
+  - component: {fileID: 1394330771}
   m_Layer: 5
   m_Name: Mana
   m_TagString: Untagged
@@ -3264,6 +3281,38 @@ RectTransform:
   m_AnchoredPosition: {x: -825, y: 445.30002}
   m_SizeDelta: {x: 230, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1394330771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394330767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2421fe2428be21445880124803f580fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileSpeed: 500
+  bullet: {fileID: 0}
+  bulletSpeed: 0
+  spawnPos: {fileID: 0}
+  player: {fileID: 0}
+--- !u!114 &1394330772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394330767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5986a4f5224c294459a59de73f0da6b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ManaBar: {fileID: 1394330768}
+  ManaAmount: 100
+  ManaRegenAddPerSecond: 5
 --- !u!1 &1434813793
 GameObject:
   m_ObjectHideFlags: 0
@@ -3519,6 +3568,7 @@ GameObject:
   - component: {fileID: 1939788147}
   - component: {fileID: 1939788149}
   - component: {fileID: 1939788148}
+  - component: {fileID: 1939788150}
   m_Layer: 5
   m_Name: Health
   m_TagString: Untagged
@@ -3583,6 +3633,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939788146}
   m_CullTransparentMesh: 1
+--- !u!114 &1939788150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939788146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1827000dfe0df4d43bb402dc786fd790, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HealthBar: {fileID: 1939788148}
+  HealthAmount: 100
 --- !u!1 &2049736125
 GameObject:
   m_ObjectHideFlags: 0
@@ -3677,7 +3741,7 @@ GameObject:
   - component: {fileID: 2069922904}
   m_Layer: 0
   m_Name: SlimeEnemy
-  m_TagString: Enemy
+  m_TagString: Slime
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3715,7 +3779,7 @@ MonoBehaviour:
   Enemy: {fileID: 2069922902}
   enemyCount: 5
   HealthBar: {fileID: 1282611004}
-  HealthAmount: 80
+  HealthAmount: 100
 --- !u!114 &2069922905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3729,7 +3793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 1282611004}
-  HealthAmount: 80
+  HealthAmount: 100
 --- !u!114 &2069922906
 MonoBehaviour:
   m_ObjectHideFlags: 0

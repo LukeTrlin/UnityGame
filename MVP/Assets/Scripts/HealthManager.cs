@@ -14,7 +14,7 @@ public class HealthManager : MonoBehaviour
 
 
     public Image HealthBar;
-    public float HealthAmount = 80f;
+    public float HealthAmount = 100f;
 
     // Start is called before the first frame update
     void Start()

@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 
 {
 
     //movement 
+
+    private ManaManager manaManager;
+    public Image manaBar;
 
     public Transform bulletTransform;
     public float yRange = 9.5f;
@@ -34,8 +39,10 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        manaManager = manaBar.GetComponent<ManaManager>();
         rb = GetComponent<Rigidbody2D>();
         ActiveMoveSpeed = moveSpeed;
+        
    
     }
 
@@ -105,10 +112,19 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = moveDirection * moveSpeed;
     }
+
+   
     
     public void shoot () {
-    
-        Instantiate(bulletPrefab, bulletTransform.position, Quaternion.identity);
+
+        if (manaManager.ManaAmount >= 10)
+        {
+            manaManager.ManaDrain(10);
+            Instantiate(bulletPrefab, bulletTransform.position, Quaternion.identity);
+        }
+        
+        
+        
 
     }
 }
