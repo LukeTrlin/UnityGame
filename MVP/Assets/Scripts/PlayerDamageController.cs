@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class PlayerDamageController : MonoBehaviour
 {
     public Image healthbar;
+    Renderer rend;
+    Color c;
 
 
     private HealthManager healthManager;
@@ -15,44 +17,35 @@ public class PlayerDamageController : MonoBehaviour
     void Start()
     {
         healthManager = healthbar.GetComponent<HealthManager>();
+        rend = GetComponent<Renderer> ();
+        c = rend.material.color;
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (healthManager.HealthAmount == 0)
-        {
-            SceneManager.LoadScene("BasicScene");
-        }
     }
 
    
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        StartCoroutine(waiter());
-       
-        IEnumerator waiter()
+        if (collision.gameObject.transform.GetChild(0).gameObject.tag == "Enemy") 
         {
-           if (collision.gameObject.transform.GetChild(0).gameObject.tag == "Enemy")
-        {
-            while (collision.gameObject.tag == "Slime" || collision.gameObject.tag == "Skeleton")
-            {
                 healthManager.TakeDamage(10);
-                yield return new WaitForSeconds(1);
-            }
-           
-            
-        } 
-        }
-
-       
-        
-        
-
-
-
-
+                StartCoroutine ("Iframes");
+        }   
+    }
+    
+    IEnumerator Iframes ()
+    {
+        Physics2D.IgnoreLayerCollision (7, 8, true);
+        c.a = 0.5f;
+        rend.material.color = c;
+        yield return new WaitForSeconds (1f);
+        Physics2D.IgnoreLayerCollision (7, 8, false);
+        c.a = 1f;
+        rend.material.color = c;
     }
 }

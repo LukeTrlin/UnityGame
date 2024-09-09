@@ -18,7 +18,7 @@ public class ManaManager : MonoBehaviour
     {
         // Mana Regeneration
         
-        ManaRestore(0.3f);
+        ManaRestore(0.25f);
        
 
        

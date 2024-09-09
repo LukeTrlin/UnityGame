@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody2D bulletPrefab;
     [SerializeField] private Transform firingPoint;
 
+    // Damage Variables
+
 
     
     // Start is called before the first frame update
@@ -117,9 +119,9 @@ public class PlayerController : MonoBehaviour
     
     public void shoot () {
 
-        if (manaManager.ManaAmount >= 10)
+        if (manaManager.ManaAmount >= 20)
         {
-            manaManager.ManaDrain(10);
+            manaManager.ManaDrain(20);
             Instantiate(bulletPrefab, bulletTransform.position, Quaternion.identity);
         }
         
@@ -127,4 +129,6 @@ public class PlayerController : MonoBehaviour
         
 
     }
+
+
 }
