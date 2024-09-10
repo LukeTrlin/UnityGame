@@ -23,7 +23,6 @@ public class Respawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.SetText("Enemies Remaining:", enemyCount);
         
 
 

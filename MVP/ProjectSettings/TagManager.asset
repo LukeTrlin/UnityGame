@@ -10,6 +10,7 @@ TagManager:
   - Slime
   - Skeleton
   - RoomSpawnPoint
+  - Rooms
   layers:
   - Default
   - TransparentFX
