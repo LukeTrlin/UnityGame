@@ -734,7 +734,6 @@ GameObject:
   - component: {fileID: 650958506}
   - component: {fileID: 650958505}
   - component: {fileID: 650958504}
-  - component: {fileID: 650958503}
   m_Layer: 5
   m_Name: Mana
   m_TagString: Untagged
@@ -761,23 +760,6 @@ RectTransform:
   m_AnchoredPosition: {x: -825, y: 445.30002}
   m_SizeDelta: {x: 230, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &650958503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 650958501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2421fe2428be21445880124803f580fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectileSpeed: 500
-  bullet: {fileID: 0}
-  bulletSpeed: 0
-  spawnPos: {fileID: 0}
-  player: {fileID: 0}
 --- !u!114 &650958504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1813,7 +1795,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1222994108}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.000000050301}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0009}
   m_LocalScale: {x: 0.8241096, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1821,8 +1803,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14.2, y: 0.00034658}
-  m_SizeDelta: {x: 158.24, y: 23.099}
+  m_AnchoredPosition: {x: 0, y: 0.15}
+  m_SizeDelta: {x: 191.996, y: 22.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1222994110
 MonoBehaviour:
@@ -1879,7 +1861,8 @@ GameObject:
   - component: {fileID: 1247241856}
   - component: {fileID: 1247241855}
   - component: {fileID: 1247241863}
-  m_Layer: 7
+  - component: {fileID: 1247241864}
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2160,6 +2143,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1218f8cbe77e8e24e8950abe0327b4d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1247241864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247241853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 386ccce8aa31fa94ba098c1fb6d9f4eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1348053690

@@ -12,6 +12,9 @@ TagManager:
   - RoomSpawnPoint
   - Rooms
   - TopDoor
+  - LeftDoor
+  - RightDoor
+  - BottomDoor
   layers:
   - Default
   - TransparentFX

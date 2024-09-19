@@ -31,7 +31,7 @@ public class PlayerDamageController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.transform.GetChild(0).gameObject.tag == "Enemy") 
+        if (collision.gameObject.tag == "Slime" || collision.gameObject.tag == "Skeleton") 
         {
                 healthManager.TakeDamage(10);
                 StartCoroutine ("Iframes");
