@@ -11,6 +11,7 @@ TagManager:
   - Skeleton
   - RoomSpawnPoint
   - Rooms
+  - TopDoor
   layers:
   - Default
   - TransparentFX

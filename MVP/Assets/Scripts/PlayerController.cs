@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
     public Image manaBar;
 
     public Transform bulletTransform;
-    public float yRange = 9.5f;
-    public float xRange = 18f;
+    public float yRange = 7f;
+    public float xRange = 7f;
     private Rigidbody2D rb;
 
     public float moveSpeed;
@@ -61,7 +61,6 @@ public class PlayerController : MonoBehaviour
 
             transform.position = new Vector3(xRange, transform.position.y, transform.position.z);
         }
-
         if (transform.position.y > yRange) {
 
             transform.position = new Vector3(transform.position.x, yRange, transform.position.z);
@@ -85,6 +84,27 @@ public class PlayerController : MonoBehaviour
                 ActiveMoveSpeed = DashSpeed;
                 DashCounter = DashLength;
             }
+        }
+
+        // Teleport Test
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            gameObject.transform.position += new Vector3(0f, 24f, 0f);
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            gameObject.transform.position += new Vector3(-40f, 0f, 0f);
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            gameObject.transform.position += new Vector3(40f, 0f, 0f);
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            gameObject.transform.position += new Vector3(0f, -24f, 0f);
         }
 
         if (DashCounter > 0)

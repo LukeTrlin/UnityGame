@@ -22,11 +22,6 @@ public class CollisionDetector : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-       
-    
-
-       
-        
         //Check for a match with the specified name on any GameObject that collides with your GameObject
         if (collision.gameObject.tag == "Slime" || collision.gameObject.tag == "Skeleton") 
         {

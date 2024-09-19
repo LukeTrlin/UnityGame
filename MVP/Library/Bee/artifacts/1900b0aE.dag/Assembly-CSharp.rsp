@@ -378,6 +378,7 @@
 "Assets/Scripts/CollisionDetector.cs"
 "Assets/Scripts/DamageController.cs"
 "Assets/Scripts/DashAbility.cs"
+"Assets/Scripts/DoorManager.cs"
 "Assets/Scripts/EnemyAI.cs"
 "Assets/Scripts/HealthManager.cs"
 "Assets/Scripts/Invulnerability.cs"

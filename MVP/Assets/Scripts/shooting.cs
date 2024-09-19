@@ -20,7 +20,6 @@ public class shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
 
         Vector3 rotation = mousePos - transform.position;
