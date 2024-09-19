@@ -18,7 +18,7 @@ public class ManaManager : MonoBehaviour
     {
         // Mana Regeneration
         
-        ManaRestore(0.25f);
+        ManaRestore(0.1f);
        
 
        
@@ -36,6 +36,8 @@ public class ManaManager : MonoBehaviour
     {
         ManaAmount += ManaRestore;
         ManaAmount = Mathf.Clamp(ManaAmount, 0, 100);
+
+        ManaBar.fillAmount = ManaAmount / 100;
     }
 
     

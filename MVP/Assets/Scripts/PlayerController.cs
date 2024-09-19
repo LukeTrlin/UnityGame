@@ -7,6 +7,7 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 
 {
+    [SerializeField] GameObject pauseMenu;
 
     //movement 
 
@@ -53,6 +54,11 @@ public class PlayerController : MonoBehaviour
     {   
 
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0;
+        }
 
        
         // PLAYER MOVEMENT
