@@ -15,6 +15,13 @@ TagManager:
   - LeftDoor
   - RightDoor
   - BottomDoor
+  - TopWall
+  - BottomWall
+  - LeftWall
+  - RightWall
+  - Wall
+  - ToggleEnemies
+  - CentralBlock
   layers:
   - Default
   - TransparentFX
