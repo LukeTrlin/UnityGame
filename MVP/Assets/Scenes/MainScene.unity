@@ -2230,12 +2230,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051812392}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -12.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.258819, y: -0, z: -0, w: 0.9659259}
+  m_LocalPosition: {x: 0, y: 5.124999, z: -8.87676}
+  m_LocalScale: {x: 0.8333333, y: 0.8333333, z: 0.8333333}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1247241854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1097494502
 GameObject:
@@ -2353,6 +2353,7 @@ Transform:
   - {fileID: 1756493627}
   - {fileID: 1712543602}
   - {fileID: 535050333}
+  - {fileID: 1051812395}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -30, y: 0, z: 0}
 --- !u!114 &1247241855
@@ -2397,7 +2398,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2481,6 +2482,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ac5a463df6c5b14689a7102902c074e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDash: 1
+  isDashing: 0
+  dashingPower: 24
+  dashingTime: 0.2
+  dashingCooldown: 1
   rb: {fileID: 1247241860}
 --- !u!114 &1247241858
 MonoBehaviour:
@@ -2503,7 +2509,6 @@ MonoBehaviour:
   yRange: 7
   xRange: 7
   moveSpeed: 6
-  DashSpeed: 5
   bulletPrefab: {fileID: 6292540963748520797, guid: 602c8b6bcc14e744da394436d4f1c544, type: 3}
   bulletPrefab2: {fileID: 0}
   firingPoint: {fileID: 1544138314}
@@ -2553,7 +2558,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &1247241861
 SpriteRenderer:
@@ -2634,6 +2639,7 @@ MonoBehaviour:
   StaticPlayer: {fileID: 535050332}
   player: {fileID: 1247241853}
   Camera: {fileID: 1051812394}
+  Room: 1
   ClearedRooms: []
   respawn: {fileID: 536474700}
 --- !u!1 &1265997469
@@ -3681,7 +3687,6 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1051812395}
   - {fileID: 201794878}
   - {fileID: 1402971664}
   - {fileID: 358842442}

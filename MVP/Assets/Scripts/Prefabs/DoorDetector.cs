@@ -40,7 +40,7 @@ public class DoorDetector : MonoBehaviour
         // Check for different door tags and the CanDoor condition
         if (collision.gameObject.CompareTag("TopDoor"))
         {
-            HandleDoorTransition(new Vector3(0f, 20f, 0f),new Vector3(0f, 24f, 0f));
+            HandleDoorTransition(new Vector3(0f, 20f, 0f));
             CurrentRoom = collision.gameObject.transform.parent.transform.parent.gameObject;
             CurrentRoomID = CurrentRoom.GetComponent<RoomIdentifier>().roomID;
             
@@ -59,7 +59,7 @@ public class DoorDetector : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("LeftDoor"))
         {
-            HandleDoorTransition(new Vector3(-32.5f, 0f, 0f),new Vector3(-40f, 0f, 0f));
+            HandleDoorTransition(new Vector3(-32.5f, 0f, 0f));
             CurrentRoom = collision.gameObject.transform.parent.transform.parent.gameObject;
             CurrentRoomID = CurrentRoom.GetComponent<RoomIdentifier>().roomID;
             
@@ -73,7 +73,7 @@ public class DoorDetector : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("RightDoor"))
         {
-            HandleDoorTransition(new Vector3(32.5f, 0f, 0f),new Vector3(40f, 0f, 0f));
+            HandleDoorTransition(new Vector3(32.5f, 0f, 0f));
             CurrentRoom = collision.gameObject.transform.parent.transform.parent.gameObject;
             CurrentRoomID = CurrentRoom.GetComponent<RoomIdentifier>().roomID;
             
@@ -85,7 +85,7 @@ public class DoorDetector : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("BottomDoor"))
         {
-            HandleDoorTransition(new Vector3(0f, -20f, 0f), new Vector3(0f, -24f, 0f));
+            HandleDoorTransition(new Vector3(0f, -20f, 0f));
             CurrentRoom = collision.gameObject.transform.parent.transform.parent.gameObject;
             CurrentRoomID = CurrentRoom.GetComponent<RoomIdentifier>().roomID;
             
@@ -99,11 +99,12 @@ public class DoorDetector : MonoBehaviour
         }
     }
 
-    private void HandleDoorTransition(Vector3 movement, Vector3 cameramovement)
+    private void HandleDoorTransition(Vector3 movement)
     {
         if (respawn != null && respawn.CanDoor)
         {
-            MoveDoorAndPlayer(movement, cameramovement);
+
+            MoveDoorAndPlayer(movement);
 
             
             
@@ -131,11 +132,11 @@ public class DoorDetector : MonoBehaviour
         }
     }
 
-    private void MoveDoorAndPlayer(Vector3 movement, Vector3 cameramovement)
+    private void MoveDoorAndPlayer(Vector3 movement)
     {
         // Move both the door and the static player by the specified movement vector
         gameObject.transform.position += movement;
-        Camera.transform.position += cameramovement;
+        
         StaticPlayer.transform.position += movement;
     }
 

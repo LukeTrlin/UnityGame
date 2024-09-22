@@ -127,7 +127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   force: 5
-  speed: 5
+  PlayerController: {fileID: 0}
+  speed: 2
   lifeTime: 2
 --- !u!60 &962981284054514619
 PolygonCollider2D:

@@ -377,7 +377,6 @@
 "Assets/Scripts/Enemies/EnemyAI.cs"
 "Assets/Scripts/Enemies/Respawn.cs"
 "Assets/Scripts/Player/BoundaryController.cs"
-"Assets/Scripts/Player/DashAbility.cs"
 "Assets/Scripts/Player/HealthManager.cs"
 "Assets/Scripts/Player/ManaManager.cs"
 "Assets/Scripts/Player/PlayerController.cs"

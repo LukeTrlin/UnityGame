@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject pauseMenu; // Pause Menu Object
 
     //movement 
+    
+
 
     public HealthManager healthManager; // HealthBars
 
@@ -26,14 +28,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb; // Rigidbody
 
     public float moveSpeed; // Move Speed
-
-    private float ActiveMoveSpeed; // WIP
-    public float DashSpeed; // WIP
-
-    private float DashLength = .5f, DashCooldown = 1f; // WIP
-
-    private float DashCounter; // WIP
-    private float DashCooldownCounter; // WIP
     
     private Vector2 moveDirection; // Direction currently moving
 
@@ -48,7 +42,6 @@ public class PlayerController : MonoBehaviour
     {
         manaManager = manaBar.GetComponent<ManaManager>(); // Finds Mana Manager
         rb = GetComponent<Rigidbody2D>(); // Converts Rigidbody into rb for ease of access
-        ActiveMoveSpeed = moveSpeed; // active move speed = move speed
         
    
     }
@@ -69,55 +62,10 @@ public class PlayerController : MonoBehaviour
 
         // PLAYER MOVEMENT
         moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")); // Determines Move Direction
-        
-        // DASH MECHANICS
-        
-        if (Input.GetKeyDown(KeyCode.Space)) // Is Space Is Pressed Dash
-        {
-            if (DashCooldownCounter <= 0 && DashCounter <= 0) // If Both condition True
-            {
-                ActiveMoveSpeed = DashSpeed; // Change Move Speed
-                DashCounter = DashLength; // Sets Dash Counter to Dash Length
-            }
-        }
 
-        // Teleport Test
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            gameObject.transform.position += new Vector3(0f, 24f, 0f); // Move Player Up
-        }
 
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            gameObject.transform.position += new Vector3(-40f, 0f, 0f); // Move Player Left
-        }
 
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            gameObject.transform.position += new Vector3(40f, 0f, 0f); // Move Player Right
-        }
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            gameObject.transform.position += new Vector3(0f, -24f, 0f); // Move Player Down
-        }
-
-        if (DashCounter > 0)
-        {
-            DashCounter -= Time.deltaTime; //  Dash Counter Timer
-
-            if (DashCounter <=0)
-            {
-                // Allows Dashing
-                ActiveMoveSpeed = moveSpeed;
-                DashCounter = DashCooldown;
-            }
-        }
-        
-        if (DashCooldownCounter > 0)
-        {
-            DashCooldownCounter -= Time.deltaTime;
-        }
 
         // FIRING MECHANICS
 
@@ -147,37 +95,4 @@ public class PlayerController : MonoBehaviour
             Instantiate(bulletPrefab, bulletTransform.position, Quaternion.identity); // Clones bullet prefab anmd fires
         }
     }
-
-    
-
-    void OnTriggerEnter2D (Collider2D collision)
-    {
-        if (collision.gameObject.tag == "TopWall")
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y-0.24f,transform.position.z);
-        }
-
-        if (collision.gameObject.tag == "BottomWall")
-        {
-            transform.position = new Vector3(transform.position.x, transform.position.y+0.24f,transform.position.z);
-        }
-
-        if (collision.gameObject.tag == "RightWall")
-        {
-            transform.position = new Vector3(transform.position.x+0.24f, transform.position.y,transform.position.z);
-        }
-
-        if (collision.gameObject.tag == "LeftWall")
-        {
-            transform.position = new Vector3(transform.position.x-0.24f, transform.position.y,transform.position.z);
-        }
-
-
-        
-    }
-
-  
-     
-
-
 }
