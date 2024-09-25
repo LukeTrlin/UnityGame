@@ -11,7 +11,7 @@ public class ManaManager : MonoBehaviour
     {
         // Mana Regeneration
         
-        ManaRestore(0.075f); // Constant 0.075 mana regen per frame
+        ManaRestore(10f); // Constant 0.075 mana regen per frame
        
 
        

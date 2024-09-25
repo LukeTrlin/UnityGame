@@ -719,7 +719,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 535050333}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2156,7 +2156,7 @@ GameObject:
   - component: {fileID: 1051812395}
   - component: {fileID: 1051812394}
   - component: {fileID: 1051812393}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -2330,7 +2330,7 @@ GameObject:
   - component: {fileID: 1247241855}
   - component: {fileID: 1247241863}
   - component: {fileID: 1247241864}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2482,12 +2482,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ac5a463df6c5b14689a7102902c074e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canDash: 1
-  isDashing: 0
-  dashingPower: 24
-  dashingTime: 0.2
-  dashingCooldown: 1
-  rb: {fileID: 1247241860}
 --- !u!114 &1247241858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2636,10 +2630,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 386ccce8aa31fa94ba098c1fb6d9f4eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentRoomId: 
   StaticPlayer: {fileID: 535050332}
   player: {fileID: 1247241853}
   Camera: {fileID: 1051812394}
-  Room: 1
+  Room: 50
+  currentRoom: {fileID: 0}
+  Clearedroom: {fileID: 0}
   ClearedRooms: []
   respawn: {fileID: 536474700}
 --- !u!1 &1265997469
@@ -3156,7 +3153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1712543602}
   - component: {fileID: 1712543601}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ViewCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}

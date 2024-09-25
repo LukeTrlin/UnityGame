@@ -44,4 +44,7 @@ public class PlayerDamageController : MonoBehaviour
         c.a = 1f; // transparency back to normal
         rend.material.color = c; // resets colour
     }
+
+
+   
 }

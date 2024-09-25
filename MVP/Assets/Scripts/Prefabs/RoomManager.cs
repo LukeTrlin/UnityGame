@@ -112,6 +112,7 @@ public class RoomManager : MonoBehaviour
         
         RoomIdentifier roomIdentifier = newRoom.AddComponent<RoomIdentifier>();
         roomIdentifier.roomID = System.Guid.NewGuid().ToString();
+        newRoom.AddComponent<RoomCounter>();
         newRoom.name = $"room-{roomCount}"; // Name the room
         roomObjects.Add(newRoom); // Add the new room to the list
 

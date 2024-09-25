@@ -6,19 +6,26 @@ using UnityEngine;
 
 public class DoorDetector : MonoBehaviour
 {
+    [SerializeField] string currentRoomId;
     public GameObject StaticPlayer;
     public GameObject player;
-    private GameObject CurrentRoom;
-    private string CurrentRoomID;
-    public Camera Camera;
-    public int Room = 1;
-
    
+    private string ClearedRoomID;
+    public Camera Camera;
+    public int Room = 50;
 
-    public float[] ClearedRooms;
+    public GameObject currentRoom;
+
+    public GameObject Clearedroom;
+
+    
     List<int> IDs = new List<int>();
+    
+
+    [SerializeField]List<string> ClearedRooms = new List<string>();
 
     public Respawn respawn; // Reference to the Respawn script
+    
 
     void Start()
     {
@@ -37,18 +44,30 @@ public class DoorDetector : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
+
+
+        if (collision.gameObject.CompareTag("Debug"))
+        {
+            Debug.Log("Found Room");
+            currentRoom = collision.gameObject;
+            currentRoomId = currentRoom.GetComponent<RoomIdentifier>().roomID;
+            
+
+
+        }
+      
         // Check for different door tags and the CanDoor condition
         if (collision.gameObject.CompareTag("TopDoor"))
         {
+            StartCoroutine("cantDoor");
             HandleDoorTransition(new Vector3(0f, 20f, 0f));
-            CurrentRoom = collision.gameObject.transform.parent.transform.parent.gameObject;
-            CurrentRoomID = CurrentRoom.GetComponent<RoomIdentifier>().roomID;
+            Clearedroom = collision.gameObject.transform.parent.transform.parent.gameObject;
+            ClearedRoomID = Clearedroom.GetComponent<RoomIdentifier>().roomID;
+            ClearedRooms.Add(ClearedRoomID);
             
             
-            
-            Debug.Log(CurrentRoom + CurrentRoomID);
-            IDs.Add(Room);
-            Room += 2;
+           
+           
             
             
             
@@ -59,41 +78,40 @@ public class DoorDetector : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("LeftDoor"))
         {
+            StartCoroutine("cantDoor");
             HandleDoorTransition(new Vector3(-32.5f, 0f, 0f));
-            CurrentRoom = collision.gameObject.transform.parent.transform.parent.gameObject;
-            CurrentRoomID = CurrentRoom.GetComponent<RoomIdentifier>().roomID;
+           Clearedroom = collision.gameObject.transform.parent.transform.parent.gameObject;
+            ClearedRoomID = Clearedroom.GetComponent<RoomIdentifier>().roomID;
             
             
             
-            Debug.Log(CurrentRoom + CurrentRoomID);
-            IDs.Add(Room);
-            Room -= 1;
+            
             
             
         }
         else if (collision.gameObject.CompareTag("RightDoor"))
         {
+            StartCoroutine("cantDoor");
             HandleDoorTransition(new Vector3(32.5f, 0f, 0f));
-            CurrentRoom = collision.gameObject.transform.parent.transform.parent.gameObject;
-            CurrentRoomID = CurrentRoom.GetComponent<RoomIdentifier>().roomID;
+            Clearedroom = collision.gameObject.transform.parent.transform.parent.gameObject;
+            ClearedRoomID = Clearedroom.GetComponent<RoomIdentifier>().roomID;
+           
             
-            
-            Debug.Log(CurrentRoom + CurrentRoomID);
-            IDs.Add(Room);
-            Room += 1;
+           
            
         }
         else if (collision.gameObject.CompareTag("BottomDoor"))
         {
+            StartCoroutine("cantDoor");
+            
             HandleDoorTransition(new Vector3(0f, -20f, 0f));
-            CurrentRoom = collision.gameObject.transform.parent.transform.parent.gameObject;
-            CurrentRoomID = CurrentRoom.GetComponent<RoomIdentifier>().roomID;
+            Clearedroom = collision.gameObject.transform.parent.transform.parent.gameObject;
+            ClearedRoomID = Clearedroom.GetComponent<RoomIdentifier>().roomID;
             
             
+           
             
-            Debug.Log(CurrentRoom + CurrentRoomID);
-            IDs.Add(Room);
-            Room -= 2;
+            
             
             
         }
@@ -103,9 +121,9 @@ public class DoorDetector : MonoBehaviour
     {
         if (respawn != null && respawn.CanDoor)
         {
-
+            ClearedRooms.Add(currentRoomId);
             MoveDoorAndPlayer(movement);
-
+            
             
             
                 StartCoroutine(Waiter());
@@ -113,15 +131,15 @@ public class DoorDetector : MonoBehaviour
 
                 IEnumerator Waiter()
                 {
-                    yield return new WaitForSeconds(3); // Wait before spawning the new skeleton
+                    yield return new WaitForSeconds(0.5f); // Wait before spawning the new skeleton
                      // Call the method to spawn a new skeleton
-                     if (!IDs.Contains(Room))
-                {
-                    
-                    
-                    respawn.ReloadEnemies(5, 7); // Reload enemies after resetting
+                    if (!ClearedRooms.Contains(currentRoomId))
+                        {
+                            
+                            
+                            respawn.ReloadEnemies(5, 7); // Reload enemies after resetting
 
-                }
+                        }
                 }
 
                 
@@ -135,6 +153,7 @@ public class DoorDetector : MonoBehaviour
     private void MoveDoorAndPlayer(Vector3 movement)
     {
         // Move both the door and the static player by the specified movement vector
+        
         gameObject.transform.position += movement;
         
         StaticPlayer.transform.position += movement;
@@ -144,5 +163,11 @@ public class DoorDetector : MonoBehaviour
 {
     RoomIdentifier identifier = GetComponent<RoomIdentifier>();
     return identifier != null ? identifier.roomID : gameObject.name; // Use the ID from the RoomIdentifier
+
+
+
+    
 }
+
+   
 }

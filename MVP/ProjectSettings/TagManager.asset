@@ -22,6 +22,7 @@ TagManager:
   - Wall
   - ToggleEnemies
   - CentralBlock
+  - Debug
   layers:
   - Default
   - TransparentFX
@@ -32,7 +33,7 @@ TagManager:
   - 
   - Player
   - Enemies
-  - 
+  - Door
   - 
   - 
   - 
