@@ -7,11 +7,11 @@ public class ManaManager : MonoBehaviour
     public Image ManaBar; // mana bar
     public float ManaAmount = 100f; // Max Mana
      
-    void Update()
+    void FixedUpdate()
     {
         // Mana Regeneration
         
-        ManaRestore(10f); // Constant 0.075 mana regen per frame
+        ManaRestore(0.5f); // Constant 0.075 mana regen per frame
        
 
        

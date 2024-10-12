@@ -751,7 +751,6 @@ GameObject:
   m_Component:
   - component: {fileID: 536474698}
   - component: {fileID: 536474699}
-  - component: {fileID: 536474700}
   m_Layer: 0
   m_Name: ScriptManager
   m_TagString: Untagged
@@ -788,33 +787,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1343788796}
   music: {fileID: 0}
---- !u!114 &536474700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 536474696}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0eb6ab53a8a7f6479ac8dc6200ad832, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skeletonEnemy: {fileID: 6909345924861556305, guid: c4387cfab7bc9d14489e12433c5c13a0, type: 3}
-  player: {fileID: 1247241853}
-  SkeletonHealthManager: {fileID: 0}
-  SlimeHealthManager: {fileID: 0}
-  slimeEnemy: {fileID: 5447567241813195495, guid: 71c5514ddc72fc14084b0bb6f690a33d, type: 3}
-  MaxEnemyCount: 5
-  MinEnemyCount: 3
-  enemyCount: 0
-  SkeletonsSpawnable: 0
-  SlimeSpawnable: 0
-  SkeletonsSpawned: 0
-  SlimesSpawned: 1
-  HealthBar: {fileID: 0}
-  HealthAmount: 100
-  CanDoor: 0
 --- !u!1 &575001827
 GameObject:
   m_ObjectHideFlags: 0
@@ -2109,6 +2081,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ManaBar: {fileID: 817384154}
   ManaAmount: 100
+--- !u!1 &974938437
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 974938439}
+  m_Layer: 0
+  m_Name: SpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &974938439
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 974938437}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.20000076}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &986250372
 GameObject:
   m_ObjectHideFlags: 0
@@ -2325,11 +2328,9 @@ GameObject:
   - component: {fileID: 1247241860}
   - component: {fileID: 1247241859}
   - component: {fileID: 1247241858}
-  - component: {fileID: 1247241857}
   - component: {fileID: 1247241856}
   - component: {fileID: 1247241855}
-  - component: {fileID: 1247241863}
-  - component: {fileID: 1247241864}
+  - component: {fileID: 1247241866}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -2470,18 +2471,6 @@ PolygonCollider2D:
       - {x: 0.25779086, y: 0.068789475}
       - {x: 0.25205696, y: 0.25175923}
   m_UseDelaunayMesh: 0
---- !u!114 &1247241857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1247241853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ac5a463df6c5b14689a7102902c074e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1247241858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2606,7 +2595,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1247241863
+--- !u!114 &1247241866
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2615,30 +2604,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1247241853}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1218f8cbe77e8e24e8950abe0327b4d0, type: 3}
+  m_Script: {fileID: 11500000, guid: f77582c5e866d9f4b992679405b5ec96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1247241864
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1247241853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 386ccce8aa31fa94ba098c1fb6d9f4eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  RoomType: 
+  DoorsLocked: 0
   currentRoomId: 
-  StaticPlayer: {fileID: 535050332}
-  player: {fileID: 1247241853}
-  Camera: {fileID: 1051812394}
-  Room: 50
+  TotalEnemyCount: 0
+  ActiveEnemies: 0
+  MaxEnemyCount: 5
+  MinEnemyCount: 2
   currentRoom: {fileID: 0}
-  Clearedroom: {fileID: 0}
   ClearedRooms: []
-  respawn: {fileID: 536474700}
+  skeletonEnemy: {fileID: 6909345924861556305, guid: c4387cfab7bc9d14489e12433c5c13a0, type: 3}
+  slimeEnemy: {fileID: 5447567241813195495, guid: 71c5514ddc72fc14084b0bb6f690a33d, type: 3}
+  player: {fileID: 1247241853}
+  SkeletonHealthManager: {fileID: 0}
+  SlimeHealthManager: {fileID: 0}
+  healthManager: {fileID: 0}
+  HealthBar: {fileID: 0}
+  HealthAmount: 100
 --- !u!1 &1265997469
 GameObject:
   m_ObjectHideFlags: 0
@@ -3690,3 +3675,4 @@ SceneRoots:
   - {fileID: 48223397}
   - {fileID: 536474698}
   - {fileID: 1247241854}
+  - {fileID: 974938439}

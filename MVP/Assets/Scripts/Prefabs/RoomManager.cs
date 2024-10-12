@@ -60,6 +60,7 @@ public class RoomManager : MonoBehaviour
             generationComplete = true;
             GameObject lastroom = roomObjects.Last(); // Get the last generated room
             Instantiate(bossRoomPrefab, lastroom.transform.position, Quaternion.identity); // Create the boss room
+            Destroy(lastroom);
         }
     }
 

@@ -10,9 +10,10 @@ public class HealthManager : MonoBehaviour
 
     void Update()
     {
+        
         if (HealthAmount <= 0) 
         {
-            HealthBar.fillAmount = 80f; // Fills HealthBar to 80
+            Destroy(gameObject);
         }
 
        

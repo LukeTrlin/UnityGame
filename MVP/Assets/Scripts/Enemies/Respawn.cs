@@ -28,8 +28,9 @@ public class Respawn : MonoBehaviour
     private HealthManager healthManager; // Health Manager
     public Image HealthBar; // HealthBar
     public float HealthAmount = 100f; // Health Amount
+    public int RoomType;
 
-    public bool CanDoor = false;
+    public DoorDetector doorDetector;
 
     void Start()
     {
@@ -37,20 +38,38 @@ public class Respawn : MonoBehaviour
         SkeletonsSpawnable = Random.Range(1, enemyCount); // Ensure at least one skeleton can spawn
         SlimeSpawnable = enemyCount - SkeletonsSpawnable;
 
+
+        
+
         Debug.Log("Enemies Total: " + enemyCount);
         Debug.Log("Skeletons Spawnable: " + SkeletonsSpawnable);
         Debug.Log("Slimes Spawnable: " + SlimeSpawnable);
 
         healthManager = new HealthManager();
 
-        if (SkeletonsSpawnable > 0)
+        if (SkeletonsSpawnable > 0 && RoomType == 1)
         {
             SpawnSkeleton();
         }
 
-        if (SlimeSpawnable > 0)
+        if (SlimeSpawnable > 0 && RoomType == 1)
         {
             SpawnSlime();
+        }
+
+        if (RoomType == 1)
+        {
+        Debug.Log("Roomtype is detected as entry room");
+        }
+
+        if (RoomType == 2)
+        {
+        Debug.Log("Roomtype is detected as basic room");
+        }
+
+        if (RoomType == 3)
+        {
+        Debug.Log("Roomtype is detected as boss room");
         }
     }
 
@@ -58,12 +77,12 @@ public class Respawn : MonoBehaviour
     {
         if (SkeletonsSpawned >= SkeletonsSpawnable && SlimesSpawned >= SlimeSpawnable)
         {
-            CanDoor = true;
+            doorDetector.DoorsOpen = true;
         }
 
         if (SkeletonsSpawned < SkeletonsSpawnable || SlimesSpawned < SlimeSpawnable)
         {
-            CanDoor = false;
+            doorDetector.DoorsOpen = false;
         }
 
 
@@ -102,30 +121,35 @@ public class Respawn : MonoBehaviour
 
     IEnumerator SpawnNewSlime()
     {
-        yield return new WaitForSeconds(3); // Wait before spawning the new skeleton
-        SpawnSlime(); // Call the method to spawn a new skeleton
+        yield return new WaitForSeconds(3); // Wait before spawning the new slime
+        SpawnSlime(); // Call the method to spawn a new slime
     }
 
-    void SpawnSkeleton()
+    public void SpawnSkeleton()
     {
         CurrentSkeletonEnemy = Instantiate(skeletonEnemy);
-        CurrentSkeletonEnemy.transform.position = new Vector3(player.transform.position.x + 3, player.transform.position.y, player.transform.position.z);
+        CurrentSkeletonEnemy.transform.position = new Vector3(player.transform.position.x + 5, player.transform.position.y, player.transform.position.z);
         SkeletonHealthManager = CurrentSkeletonEnemy.GetComponent<HealthManager>();
         HealthBar = SkeletonHealthManager.HealthBar;
     }
 
-    void SpawnSlime()
+    public void SpawnSlime()
     {
         CurrentSlimeEnemy = Instantiate(slimeEnemy);
-        CurrentSlimeEnemy.transform.position = new Vector3(player.transform.position.x - 3, player.transform.position.y, player.transform.position.z);
+        CurrentSlimeEnemy.transform.position = new Vector3(player.transform.position.x - 5, player.transform.position.y, player.transform.position.z);
         SlimeHealthManager = CurrentSlimeEnemy.GetComponent<HealthManager>();
         HealthBar = SlimeHealthManager.HealthBar;
     }
 
+    void SpawnBossEnemy()
+    {
+
+    }
+
   
-         public void ReloadEnemies(int min, int max)
+        public void ReloadEnemies(int min, int max)
         {
-             string currentRoomKey = GetCurrentRoomKey();
+            string currentRoomKey = GetCurrentRoomKey();
             Debug.Log($"Checking room state for {currentRoomKey}");
             
             if (roomStates.TryGetValue(currentRoomKey, out bool isCleared) && isCleared)

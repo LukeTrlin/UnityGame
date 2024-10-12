@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     void Update()
 
     {   
-     
+    
 
         if (Input.GetKeyDown(KeyCode.Escape)) // If Escape is pressed
         {
@@ -82,7 +82,6 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = moveDirection * moveSpeed; // sets rb velocity consistently
         ActiveSpeed = rb.velocity;
-
     }
 
    

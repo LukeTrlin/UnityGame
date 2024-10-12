@@ -18,18 +18,20 @@ public class DoorDetector : MonoBehaviour
 
     public GameObject Clearedroom;
 
-    
+    private bool testBool;
+
     List<int> IDs = new List<int>();
     
 
     [SerializeField]List<string> ClearedRooms = new List<string>();
 
     public Respawn respawn; // Reference to the Respawn script
-    
+    [SerializeField] public bool DoorsOpen;
 
     void Start()
     {
-        
+        DoorsOpen = true;
+        testBool = true;
         
         // You can add any additional logic here if needed
     }
@@ -57,69 +59,45 @@ public class DoorDetector : MonoBehaviour
         }
       
         // Check for different door tags and the CanDoor condition
-        if (collision.gameObject.CompareTag("TopDoor"))
+
+        // Top door moving player to the room above
+        if (collision.gameObject.CompareTag("TopDoor") && DoorsOpen == true)
         {
-            StartCoroutine("cantDoor");
             HandleDoorTransition(new Vector3(0f, 20f, 0f));
             Clearedroom = collision.gameObject.transform.parent.transform.parent.gameObject;
             ClearedRoomID = Clearedroom.GetComponent<RoomIdentifier>().roomID;
             ClearedRooms.Add(ClearedRoomID);
-            
-            
-           
-           
-            
-            
-            
-
         }
 
-       
-
-        else if (collision.gameObject.CompareTag("LeftDoor"))
+        // Left door moving player to the room to the left
+        else if (collision.gameObject.CompareTag("LeftDoor") && DoorsOpen == true)
         {
-            StartCoroutine("cantDoor");
             HandleDoorTransition(new Vector3(-32.5f, 0f, 0f));
-           Clearedroom = collision.gameObject.transform.parent.transform.parent.gameObject;
+            Clearedroom = collision.gameObject.transform.parent.transform.parent.gameObject;
             ClearedRoomID = Clearedroom.GetComponent<RoomIdentifier>().roomID;
-            
-            
-            
-            
-            
-            
+            ClearedRooms.Add(ClearedRoomID);
         }
-        else if (collision.gameObject.CompareTag("RightDoor"))
+        // Right door moving player to the room to the right
+        else if (collision.gameObject.CompareTag("RightDoor") && DoorsOpen == true)
         {
-            StartCoroutine("cantDoor");
             HandleDoorTransition(new Vector3(32.5f, 0f, 0f));
             Clearedroom = collision.gameObject.transform.parent.transform.parent.gameObject;
             ClearedRoomID = Clearedroom.GetComponent<RoomIdentifier>().roomID;
-           
-            
-           
-           
+            ClearedRooms.Add(ClearedRoomID);
         }
-        else if (collision.gameObject.CompareTag("BottomDoor"))
+        // Bottom door moving player to the room below
+        else if (collision.gameObject.CompareTag("BottomDoor") && DoorsOpen == true)
         {
-            StartCoroutine("cantDoor");
-            
             HandleDoorTransition(new Vector3(0f, -20f, 0f));
             Clearedroom = collision.gameObject.transform.parent.transform.parent.gameObject;
             ClearedRoomID = Clearedroom.GetComponent<RoomIdentifier>().roomID;
-            
-            
-           
-            
-            
-            
-            
+            ClearedRooms.Add(ClearedRoomID);
         }
     }
 
     private void HandleDoorTransition(Vector3 movement)
     {
-        if (respawn != null && respawn.CanDoor)
+        if (testBool = true)
         {
             ClearedRooms.Add(currentRoomId);
             MoveDoorAndPlayer(movement);
