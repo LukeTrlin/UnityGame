@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 48223397}
+  - component: {fileID: 48223398}
   m_Layer: 0
   m_Name: Characters
   m_TagString: Untagged
@@ -154,6 +155,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &48223398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48223396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cab4c2e76c21c648a86d815e6939035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &147701366
 GameObject:
   m_ObjectHideFlags: 0
@@ -2521,15 +2534,17 @@ MonoBehaviour:
   currentRoom: {fileID: 0}
   ClearedRooms: []
   skeletonEnemy: {fileID: 6909345924861556305, guid: c4387cfab7bc9d14489e12433c5c13a0, type: 3}
-  slimeEnemy: {fileID: 5447567241813195495, guid: 71c5514ddc72fc14084b0bb6f690a33d, type: 3}
+  slimeBoss: {fileID: 5447567241813195495, guid: 71c5514ddc72fc14084b0bb6f690a33d, type: 3}
   player: {fileID: 1247241853}
+  CurrentRoom: {fileID: 0}
   SkeletonHealthManager: {fileID: 0}
-  SlimeHealthManager: {fileID: 0}
+  BossHealthManager: {fileID: 0}
   healthManager: {fileID: 0}
   roomCounter: {fileID: 0}
   HealthBar: {fileID: 0}
   HealthAmount: 100
   spawnController: 1
+  BossAmount: 0
   doorDetector: {fileID: 0}
 --- !u!1 &1265997469
 GameObject:

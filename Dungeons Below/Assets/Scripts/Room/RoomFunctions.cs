@@ -6,11 +6,12 @@ using UnityEngine.UI;
 using TMPro;
 
 
+
 // Contains all functional aspects of a room = get room ID, is spawnable, etc
 
 public class RoomFunctions : MonoBehaviour
 {
-
+    Color c;
 
     private GameObject CurrentSkeletonEnemy;
     [SerializeField] public string RoomType; // Whether the player is in a basic, spawn, or boss room
@@ -32,24 +33,25 @@ public class RoomFunctions : MonoBehaviour
     // Enemy Spawning Variables
     public GameObject skeletonEnemy; // Skeleton gameobject
 
-    public GameObject slimeEnemy;// Slime gameobject
+    public GameObject slimeBoss;// Slime gameobject
     public GameObject player; // player gameobject
+    public GameObject CurrentRoom; // The room that the player is currently in
     public HealthManager SkeletonHealthManager; // Health manager for skeleton
-    public HealthManager SlimeHealthManager; // Health manager for slime
+    public HealthManager BossHealthManager; // Health manager for slime
     
 
     private GameObject ActiveSkeletonEnemy; // The active skeleton enemy
-    private GameObject ActiveSlimeEnemy; // The active skeleton enemy
+    private GameObject ActiveBoss; // The active skeleton enemy
     
 
     public HealthManager healthManager; // Health Manager
-
     public RoomCounter roomCounter;
     public Image HealthBar; // HealthBar
     public float HealthAmount = 100f; // Health Amount
 
     public bool spawnController = true;
 
+    public int BossAmount;
 
     public DoorDetector doorDetector;
 
@@ -57,21 +59,15 @@ public class RoomFunctions : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        BossAmount = 1;
         StartCoroutine("Loading");
         CurrentScore = 0;
-        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         highscore.SetText("Current Score: " + CurrentScore);
-        
-        
-        
-       
-        
     }
 
 
@@ -111,7 +107,6 @@ public class RoomFunctions : MonoBehaviour
 
         else if (collision.gameObject.CompareTag("BasicRoom"))
         {
-           
             RoomType = "BasicRoom";
             
             currentRoom = collision.gameObject;
@@ -124,7 +119,6 @@ public class RoomFunctions : MonoBehaviour
                 SpawnSkeleton();  // If the room is not cleared, spawn an enemy
                 spawnController = false;
             }
-
             }
             
             
@@ -137,6 +131,9 @@ public class RoomFunctions : MonoBehaviour
             RoomType = "BossRoom";
             currentRoom = collision.gameObject;
             currentRoomId = currentRoom.GetComponent<RoomIdentifier>().roomID;
+            SpawnBoss();
+
+
             if (ClearedRooms.Contains(currentRoomId) == false && DoorsLocked == false) // Checks to see if the room ID is already in the list and if the doors are locked
             {
                 ClearedRooms.Add(currentRoomId); // If the current roomID is not in the list and the doors are unlocked (AKA, the room is cleared), it is added
@@ -188,20 +185,7 @@ public class RoomFunctions : MonoBehaviour
             
             TotalEnemyCount = Random.Range(MinEnemyCount, MaxEnemyCount);
             ActiveEnemies = TotalEnemyCount;
-            TotalEnemyCount = 0;
             currentRoomId = currentRoom.GetComponent<RoomIdentifier>().roomID;
-            
-           
-           
-            
-
-        
-        
-        
-        
-                
-        
-
     }
 
 
@@ -220,16 +204,15 @@ public class RoomFunctions : MonoBehaviour
     // SPAWNING ENEMY FUNCTIONS
     public void SpawnSkeleton()
     {
-        if (ActiveEnemies > TotalEnemyCount)
+        if (ActiveEnemies > 0)
         {
-            CurrentSkeletonEnemy = Instantiate(skeletonEnemy);
-            CurrentSkeletonEnemy.transform.position = new Vector3(player.transform.position.x + 5, player.transform.position.y, player.transform.position.z);
+            CurrentSkeletonEnemy = Instantiate(skeletonEnemy); // make this based on the current room position
+            CurrentSkeletonEnemy.transform.position = new Vector3(currentRoom.transform.position.x + (Random.Range(7, -7)), currentRoom.transform.position.y + (Random.Range(3, -3)), currentRoom.transform.position.z);
             SkeletonHealthManager = CurrentSkeletonEnemy.GetComponent<HealthManager>();
             HealthBar = SkeletonHealthManager.HealthBar;
-        
         }
 
-        else if (ActiveEnemies <= TotalEnemyCount && RoomType != "SpawnRoom")
+        else if (ActiveEnemies == 0 && RoomType != "SpawnRoom")
         {
             DoorsLocked = false;
             
@@ -244,22 +227,30 @@ public class RoomFunctions : MonoBehaviour
             CurrentScore.ToString();
             
             spawnController = true;
-
-
         }
-        
-        
-        
     }    
+
+    public void SpawnBoss()
+    {
+        if (BossAmount > 0)
+        {
+        BossAmount -= 1;
+        ActiveBoss = Instantiate(slimeBoss);
+        ActiveBoss.transform.position = new Vector3(player.transform.position.x + (Random.Range(-5, 5) + 5), player.transform.position.y + (Random.Range(-5, 5)), player.transform.position.z);
+        BossHealthManager = CurrentSkeletonEnemy.GetComponent<HealthManager>();
+        HealthBar = BossHealthManager.HealthBar;
+        }
+    }
 
     public IEnumerator Loading()
     {
         Physics2D.IgnoreLayerCollision (7,0, true);
         yield return new WaitForSeconds(1);
         Physics2D.IgnoreLayerCollision (7, 0, false); // Allows collisions
-        
-   
     }
 
-
+    public IEnumerator Waiter()
+    {
+        yield return new WaitForSeconds(2);
+    }
 }

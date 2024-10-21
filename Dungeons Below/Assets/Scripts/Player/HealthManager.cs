@@ -7,6 +7,7 @@ public class HealthManager : MonoBehaviour
 
     public Image HealthBar; // Image Objects
     public float HealthAmount = 100f; // HealthAmount
+    
 
     void Update()
     {

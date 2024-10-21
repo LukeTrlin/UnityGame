@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision) // Detects Collision
     {
     
-        if (collision.gameObject.tag == "Slime" || collision.gameObject.tag == "Skeleton") // If It Collides with enemy
+        if (collision.gameObject.tag == "BossEnemy" || collision.gameObject.tag == "Skeleton") // If It Collides with enemy
         {
            Destroy(gameObject); // Destroy Bullet
         }

@@ -11,6 +11,8 @@ public class Buttons : MonoBehaviour
 
     [SerializeField] GameObject pauseMenu;
     public AudioClip music;
+
+    
     public void Begin() // load / restart game
     {
         SceneManager.LoadScene(2);

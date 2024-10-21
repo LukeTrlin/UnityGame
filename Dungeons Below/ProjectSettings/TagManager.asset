@@ -26,6 +26,7 @@ TagManager:
   - BossRoom
   - SpawnRoom
   - BasicRoom
+  - BossEnemy
   layers:
   - Default
   - TransparentFX

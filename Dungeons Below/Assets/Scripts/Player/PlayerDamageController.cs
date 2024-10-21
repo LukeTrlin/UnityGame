@@ -22,7 +22,13 @@ public class PlayerDamageController : MonoBehaviour
         
     }
 
-   
+    void Update()
+    {
+        if (healthManager.HealthAmount <= 0)
+        {
+            StartCoroutine("PlayerDied");
+        }
+    }
    
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -32,6 +38,11 @@ public class PlayerDamageController : MonoBehaviour
                 healthManager.TakeDamage(10); // Player Takes Damage
                 StartCoroutine ("Iframes"); // begins IFrames
         }   
+        else if (collision.gameObject.tag == "BossEnemy")
+        {
+            healthManager.TakeDamage(20); // Boss deals more damage than a regular enemy
+            StartCoroutine ("Iframes"); // Begins Iframes coroutine
+        }
     }
     
     IEnumerator Iframes () // IFrames timer
@@ -45,6 +56,11 @@ public class PlayerDamageController : MonoBehaviour
         rend.material.color = c; // resets colour
     }
 
-
-   
+    IEnumerator PlayerDied()
+    {
+        Debug.Log("PlayerDied");
+        healthManager.HealthAmount = 100;
+        SceneManager.LoadScene(1);
+        yield return new WaitForSeconds (3);
+    }
 }
