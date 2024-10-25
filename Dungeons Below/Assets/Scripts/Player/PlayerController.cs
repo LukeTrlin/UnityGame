@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     // Attack Variables
     [SerializeField] private Rigidbody2D bulletPrefab; // Bullet Rigidbody
-    [SerializeField] private Rigidbody2D bulletPrefab2; // Bullet Rigidbody
+    [SerializeField] private Rigidbody2D secondaryBulletPrefab; // Bullet Rigidbody
     [SerializeField] private Transform firingPoint; // Firing Point Location
 
     // Damage Variables
@@ -73,6 +73,10 @@ public class PlayerController : MonoBehaviour
             shoot(); // Sends to shoot function
         }
 
+        else if (Input.GetMouseButtonDown(1)) {
+            SecondaryShoot();
+        }
+
 
         
         
@@ -92,6 +96,15 @@ public class PlayerController : MonoBehaviour
         {
             manaManager.ManaDrain(20); // Drain Mana, Sends to ManaManager
             Instantiate(bulletPrefab, bulletTransform.position, Quaternion.identity); // Clones bullet prefab anmd fires
+        }
+    }
+
+    public void SecondaryShoot()
+    {
+        if (manaManager.ManaAmount >= 100) // checks if 50 mana is available
+        {
+            manaManager.ManaDrain(100);
+            Instantiate(secondaryBulletPrefab, bulletTransform.position, Quaternion.identity);
         }
     }
 }

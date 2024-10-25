@@ -8,9 +8,9 @@ public class BossEnemyAI : MonoBehaviour
 {
     private Transform target;
     private Transform randomTarget;
-    public float speed;
     private RoomFunctions roomFunctions;
-        // Start is called before the first frame update
+    public float speed;
+    // Start is called before the first frame update
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>(); // Find target

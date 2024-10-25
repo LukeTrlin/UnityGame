@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 
 
@@ -32,28 +33,31 @@ public class RoomFunctions : MonoBehaviour
 
     // Enemy Spawning Variables
     public GameObject skeletonEnemy; // Skeleton gameobject
-
     public GameObject slimeBoss;// Slime gameobject
     public GameObject player; // player gameobject
     public GameObject CurrentRoom; // The room that the player is currently in
     public HealthManager SkeletonHealthManager; // Health manager for skeleton
     public HealthManager BossHealthManager; // Health manager for slime
+    public GameObject FloorChanger;
+    public GameObject ActiveFloorChanger;
     
 
     private GameObject ActiveSkeletonEnemy; // The active skeleton enemy
     private GameObject ActiveBoss; // The active skeleton enemy
     
 
-    public HealthManager healthManager; // Health Manager
     public RoomCounter roomCounter;
     public Image HealthBar; // HealthBar
-    public float HealthAmount = 100f; // Health Amount
 
     public bool spawnController = true;
 
     public int BossAmount;
+    public bool CanBossSpawn = true;
+    public bool BossDead = false;
 
     public DoorDetector doorDetector;
+    public bool TouchDoor = false;
+    private FloorChange floorChange;
 
 
     // Start is called before the first frame update
@@ -108,7 +112,11 @@ public class RoomFunctions : MonoBehaviour
         else if (collision.gameObject.CompareTag("BasicRoom"))
         {
             RoomType = "BasicRoom";
-            
+            if (TouchDoor == false)
+            {
+                SceneManager.LoadScene(2);
+                Debug.Log("Reset Room Due to Error");
+            }
             currentRoom = collision.gameObject;
             currentRoomId = currentRoom.GetComponent<RoomIdentifier>().roomID;
             if (currentRoom.GetComponent<RoomCounter>().hasCleared == false)
@@ -137,6 +145,7 @@ public class RoomFunctions : MonoBehaviour
             if (ClearedRooms.Contains(currentRoomId) == false && DoorsLocked == false) // Checks to see if the room ID is already in the list and if the doors are locked
             {
                 ClearedRooms.Add(currentRoomId); // If the current roomID is not in the list and the doors are unlocked (AKA, the room is cleared), it is added
+                StartCoroutine("AddFloorChangeItem");
             }
         }  
 
@@ -153,6 +162,7 @@ public class RoomFunctions : MonoBehaviour
         if (collision.gameObject.CompareTag("TopDoor") && DoorsLocked == false) // If the door collision is detected and doors aren't locked, do the following 
         {
             currentRoom = collision.gameObject.transform.parent.parent.gameObject;
+            TouchDoor = true;
             gameObject.transform.position += new Vector3(0f, 20f, 0f);
             OnRoomLoad();
         }
@@ -160,6 +170,7 @@ public class RoomFunctions : MonoBehaviour
         else if (collision.gameObject.CompareTag("LeftDoor") && DoorsLocked == false) // If the door collision is detected and doors aren't locked, do the following 
         {
             currentRoom = collision.gameObject.transform.parent.parent.gameObject;
+            TouchDoor = true;
             gameObject.transform.position += new Vector3(-32.5f, 0f, 0f);
             OnRoomLoad();
         }
@@ -167,6 +178,7 @@ public class RoomFunctions : MonoBehaviour
         else if (collision.gameObject.CompareTag("RightDoor") && DoorsLocked == false) // If the door collision is detected and doors aren't locked, do the following 
         {
             currentRoom = collision.gameObject.transform.parent.parent.gameObject;
+            TouchDoor = true;
             gameObject.transform.position += new Vector3(32.5f, 0f, 0f);
             OnRoomLoad();
         }
@@ -174,6 +186,7 @@ public class RoomFunctions : MonoBehaviour
         else if (collision.gameObject.CompareTag("BottomDoor") && DoorsLocked == false) // If the door collision is detected and doors aren't locked, do the following 
         {
             currentRoom = collision.gameObject.transform.parent.parent.gameObject;
+            TouchDoor = true;
             gameObject.transform.position += new Vector3(0f, -20f, 0f);
             OnRoomLoad();
         }
@@ -232,13 +245,22 @@ public class RoomFunctions : MonoBehaviour
 
     public void SpawnBoss()
     {
-        if (BossAmount > 0)
+        if (CanBossSpawn == true)
         {
-        BossAmount -= 1;
         ActiveBoss = Instantiate(slimeBoss);
-        ActiveBoss.transform.position = new Vector3(player.transform.position.x + (Random.Range(-5, 5) + 5), player.transform.position.y + (Random.Range(-5, 5)), player.transform.position.z);
+        CanBossSpawn = false;
+        ActiveBoss.transform.position = new Vector3(currentRoom.transform.position.x, currentRoom.transform.position.y - 3, 0);
         BossHealthManager = CurrentSkeletonEnemy.GetComponent<HealthManager>();
         HealthBar = BossHealthManager.HealthBar;
+        }
+
+        if (BossDead == true)
+        {
+            // instantiate floorchanger
+            BossDead = false;
+            ActiveFloorChanger = Instantiate(FloorChanger);
+            ActiveFloorChanger.transform.position = new Vector3(currentRoom.transform.position.x, currentRoom.transform.position.y, 0);
+            
         }
     }
 
@@ -247,6 +269,13 @@ public class RoomFunctions : MonoBehaviour
         Physics2D.IgnoreLayerCollision (7,0, true);
         yield return new WaitForSeconds(1);
         Physics2D.IgnoreLayerCollision (7, 0, false); // Allows collisions
+    }
+
+    public IEnumerator AddFloorChangeItem()
+    {
+        yield return new WaitForSeconds(3);
+        ActiveFloorChanger = Instantiate(FloorChanger);
+        ActiveFloorChanger.transform.position = new Vector3(currentRoom.transform.position.x, currentRoom.transform.position.y, 0);
     }
 
     public IEnumerator Waiter()

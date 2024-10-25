@@ -140,7 +140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: 7f4d1d17850926d499ad431480eceab9, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 9c2bd59ca516fd14a9786691336edae6, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -458,6 +458,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HealthBar: {fileID: 3113406382540035775}
   BossHealthAmount: 100
+  roomFunctions: {fileID: 0}
+  FloorChanger: {fileID: 5325334412159985267, guid: 21e37d3b44e8d0b459623ac5fbc5d22d, type: 3}
+  ActiveFloorChanger: {fileID: 0}
+  player: {fileID: 5324656222875888600, guid: 8918031fbba5526489ab9aae89e4eb2f, type: 3}
 --- !u!114 &7168258202770302892
 MonoBehaviour:
   m_ObjectHideFlags: 0

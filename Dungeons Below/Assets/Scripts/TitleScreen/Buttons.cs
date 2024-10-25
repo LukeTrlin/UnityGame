@@ -46,4 +46,12 @@ public class Buttons : MonoBehaviour
         Debug.Log("Game Is Exiting");
     }
 
+    public void Tutorial()
+    {
+        SceneManager.LoadScene(5);
+        Time.timeScale = 1;
+        pauseMenu.SetActive(false);
+
+    }
+
 }

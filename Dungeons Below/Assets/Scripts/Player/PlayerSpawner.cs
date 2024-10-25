@@ -5,15 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class PlayerSpawner : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject PlayerPrefab;
+    public GameObject ActivePlayer;
+    public PlayerHealthManager playerHealthManager;
 
-    // Update is called once per frame
-    void Update()
+
+    // Start is called before the first frame update
+    void Start() 
     {
-        
+        SummonPlayer();
+    }
+    void SummonPlayer()
+    {
+        ActivePlayer = Instantiate(PlayerPrefab);
+        ActivePlayer.transform.position = new Vector3(0, 0, 0);
     }
 }

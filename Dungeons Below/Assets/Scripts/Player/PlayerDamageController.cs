@@ -7,27 +7,31 @@ using UnityEngine.SceneManagement;
 
 public class PlayerDamageController : MonoBehaviour
 {
-    public Image healthbar; // HealthBar Image
+    public Image PlayerHealthBar; // HealthBar Image
+    public float PlayerHealthAmount;
     Renderer rend; // Renderer
     Color c; // Color
-
-
-    private HealthManager healthManager; // Finds health Manager
    
     void Start()
     {
-        healthManager = healthbar.GetComponent<HealthManager>(); // Locates HealthManager
         rend = GetComponent<Renderer> (); // Defines Renderer
         c = rend.material.color; // Defines Colour
-        
+        PlayerHealthAmount = 100;
+        Physics2D.IgnoreLayerCollision (7, 8, false);
     }
 
     void Update()
     {
-        if (healthManager.HealthAmount <= 0)
+        if (PlayerHealthAmount <= 0)
         {
-            StartCoroutine("PlayerDied");
+            PlayerDied();
         }
+    }
+
+    public void PlayerTakeDamage(float damage)
+    {
+        PlayerHealthAmount -= damage; // Subtracts Damage from health
+        PlayerHealthBar.fillAmount = PlayerHealthAmount / 100; // Updates healthbar
     }
    
 
@@ -35,12 +39,13 @@ public class PlayerDamageController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Slime" || collision.gameObject.tag == "Skeleton") // If Collides with Enemies
         {
-                healthManager.TakeDamage(10); // Player Takes Damage
+                Debug.Log("Collision Detected. Player takes damage");
+                PlayerTakeDamage(10); // Player Takes Damage
                 StartCoroutine ("Iframes"); // begins IFrames
         }   
         else if (collision.gameObject.tag == "BossEnemy")
         {
-            healthManager.TakeDamage(20); // Boss deals more damage than a regular enemy
+            PlayerTakeDamage(20); // Boss deals more damage than a regular enemy
             StartCoroutine ("Iframes"); // Begins Iframes coroutine
         }
     }
@@ -56,11 +61,10 @@ public class PlayerDamageController : MonoBehaviour
         rend.material.color = c; // resets colour
     }
 
-    IEnumerator PlayerDied()
+    void PlayerDied()
     {
         Debug.Log("PlayerDied");
-        healthManager.HealthAmount = 100;
+        PlayerHealthAmount = 100;
         SceneManager.LoadScene(1);
-        yield return new WaitForSeconds (3);
     }
 }

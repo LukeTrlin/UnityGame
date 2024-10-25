@@ -27,6 +27,8 @@ TagManager:
   - SpawnRoom
   - BasicRoom
   - BossEnemy
+  - FloorTeleporter
+  - SecondaryBullet
   layers:
   - Default
   - TransparentFX

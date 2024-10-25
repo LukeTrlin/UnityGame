@@ -7,6 +7,9 @@ public class BossHealthManager : MonoBehaviour
 
     public Image HealthBar; // Image Objects
     public float BossHealthAmount = 100f; // HealthAmount
+    public RoomFunctions roomFunctions;
+
+
 
     void Update()
     {
@@ -14,6 +17,7 @@ public class BossHealthManager : MonoBehaviour
         if (BossHealthAmount <= 0) 
         {
             Destroy(gameObject);
+            roomFunctions.BossDead = true;
         }
 
        
@@ -35,6 +39,11 @@ public class BossHealthManager : MonoBehaviour
         if (collision.gameObject.tag == "Bullet") // Detects If the object collided with has the tag "Bullet
         {
             TakeDamage(2f); // Deals 20 Damage
+        }
+
+        if (collision.gameObject.tag == "SecondaryBullet")
+        {
+            TakeDamage(8f);
         }
     }
 }

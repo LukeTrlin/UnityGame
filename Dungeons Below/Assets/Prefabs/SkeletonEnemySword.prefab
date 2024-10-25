@@ -244,7 +244,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: 7f4d1d17850926d499ad431480eceab9, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 9c2bd59ca516fd14a9786691336edae6, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -501,6 +501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
+  EnemyAggro: 0
 --- !u!114 &4506420710960536238
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,11 +6,11 @@ public class PlayerHealthManager : MonoBehaviour
 {
 
     public Image PlayerHealthBar; // Image Objects
-    public float PlayerHealthAmount = 101f; // HealthAmount
+    public float PlayerHealthAmount = 100f; // HealthAmount
 
     void Update()
     {
-        if (PlayerHealthAmount <= 1) 
+        if (PlayerHealthAmount <= 0) 
         {
             Destroy(gameObject);
         }

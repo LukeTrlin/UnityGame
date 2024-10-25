@@ -37,5 +37,10 @@ public class HealthManager : MonoBehaviour
         {
             TakeDamage(20f); // Deals 20 Damage
         }
+
+        if (collision.gameObject.tag == "SecondaryBullet")
+        {
+            TakeDamage(100f);
+        }
     }
 }
