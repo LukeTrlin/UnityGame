@@ -645,6 +645,7 @@ GameObject:
   m_Component:
   - component: {fileID: 536474698}
   - component: {fileID: 536474699}
+  - component: {fileID: 536474700}
   m_Layer: 0
   m_Name: ScriptManager
   m_TagString: Untagged
@@ -679,8 +680,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: add8afc9d3ed30e46a42e4e22a4a105d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AudioManagers: {fileID: 0}
+  ScriptManager: {fileID: 0}
   pauseMenu: {fileID: 1343788796}
-  music: {fileID: 0}
+--- !u!114 &536474700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 536474696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9b220bb880c2694082033dc5c05f563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorsCleareds: 0
 --- !u!1 &576881683
 GameObject:
   m_ObjectHideFlags: 0

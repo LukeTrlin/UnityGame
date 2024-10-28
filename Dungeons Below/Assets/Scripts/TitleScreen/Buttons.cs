@@ -7,23 +7,41 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
+    public GameObject AudioManagers;
+    private AudioSource audioSource;
+    public GameObject ScriptManager;
     // All Functions for seperate buttons
 
     [SerializeField] GameObject pauseMenu;
-    public AudioClip music;
-
     
+
+    void Awake()
+    {
+        DontDestroyOnLoad(AudioManagers);
+        DontDestroyOnLoad(ScriptManager);
+        audioSource = AudioManagers.GetComponent<AudioSource>();
+        
+
+
+    }
     public void Begin() // load / restart game
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
+        RoomFunctions.CurrentScore = 0;
+        HealthManager.BaseDamage = 20;
+        HealthManager.SecondaryBaseDamage= 100;
+        BossHealthManager.BaseDamageBoss = 2;
+        BossHealthManager.SecondaryBaseDamageBoss = 8;
+        
         Time.timeScale = 1;
+        
         pauseMenu.SetActive(false);
     }
 
     public void Options() // options
     {
         SceneManager.LoadScene(4);
-        DontDestroyOnLoad(music);
+        
         
     }
 
@@ -35,9 +53,12 @@ public class Buttons : MonoBehaviour
 
     public void Title() // title
     {
-        SceneManager.LoadScene(3);
+        
+        SceneManager.LoadScene(0);
         Time.timeScale = 0;
+        
         pauseMenu.SetActive(false);
+        
     }
 
     public void Exit() // exit game

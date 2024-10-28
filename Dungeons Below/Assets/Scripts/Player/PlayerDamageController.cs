@@ -65,6 +65,6 @@ public class PlayerDamageController : MonoBehaviour
     {
         Debug.Log("PlayerDied");
         PlayerHealthAmount = 100;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 }

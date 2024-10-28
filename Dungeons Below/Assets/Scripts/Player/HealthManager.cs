@@ -7,16 +7,30 @@ public class HealthManager : MonoBehaviour
 
     public Image HealthBar; // Image Objects
     public float HealthAmount = 100f; // HealthAmount
+    [SerializeField] public float PrimaryBulletDamage;
+    [SerializeField] public float SecondaryBulletDamage;
+
+    public static float floorMultiplier = 1;
+
+    public static float BaseDamage = 20;
+    public static float SecondaryBaseDamage = 100;
+
+    public float visualDamage;
+    public float SecondaryvisualDamage;
     
 
     void Update()
     {
-        
+        visualDamage = BaseDamage;
+        SecondaryvisualDamage = SecondaryBaseDamage;
         if (HealthAmount <= 0) 
         {
             Destroy(gameObject);
         }
 
+        PrimaryBulletDamage = BaseDamage;
+        SecondaryBulletDamage = SecondaryBaseDamage;
+        
        
     }
 
@@ -35,12 +49,14 @@ public class HealthManager : MonoBehaviour
         
         if (collision.gameObject.tag == "Bullet") // Detects If the object collided with has the tag "Bullet
         {
-            TakeDamage(20f); // Deals 20 Damage
+            
+            
+            TakeDamage(PrimaryBulletDamage); // Deals 20 Damage
         }
 
         if (collision.gameObject.tag == "SecondaryBullet")
         {
-            TakeDamage(100f);
+            TakeDamage(SecondaryBulletDamage);
         }
     }
 }

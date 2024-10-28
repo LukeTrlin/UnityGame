@@ -27,7 +27,7 @@ public class SoundManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(0);
             
         }
     }
