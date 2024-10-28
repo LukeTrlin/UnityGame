@@ -165,6 +165,7 @@ public class RoomFunctions : MonoBehaviour
             TouchDoor = true;
             gameObject.transform.position += new Vector3(0f, 20f, 0f);
             OnRoomLoad();
+            Debug.Log("Door Detected");
         }
 
         else if (collision.gameObject.CompareTag("LeftDoor") && DoorsLocked == false) // If the door collision is detected and doors aren't locked, do the following 
@@ -173,6 +174,7 @@ public class RoomFunctions : MonoBehaviour
             TouchDoor = true;
             gameObject.transform.position += new Vector3(-32.5f, 0f, 0f);
             OnRoomLoad();
+            Debug.Log("Door Detected");
         }
 
         else if (collision.gameObject.CompareTag("RightDoor") && DoorsLocked == false) // If the door collision is detected and doors aren't locked, do the following 
@@ -181,6 +183,7 @@ public class RoomFunctions : MonoBehaviour
             TouchDoor = true;
             gameObject.transform.position += new Vector3(32.5f, 0f, 0f);
             OnRoomLoad();
+            Debug.Log("Door Detected");
         }
 
         else if (collision.gameObject.CompareTag("BottomDoor") && DoorsLocked == false) // If the door collision is detected and doors aren't locked, do the following 
@@ -189,6 +192,7 @@ public class RoomFunctions : MonoBehaviour
             TouchDoor = true;
             gameObject.transform.position += new Vector3(0f, -20f, 0f);
             OnRoomLoad();
+            Debug.Log("Door Detected");
         }
     }
 
@@ -219,6 +223,10 @@ public class RoomFunctions : MonoBehaviour
     {
         if (ActiveEnemies > 0)
         {
+            currentRoom.transform.Find("Doors").transform.Find("TopDoor").transform.Find("TopStatusIndicator").GetComponent<SpriteRenderer>().color = Color.red;
+            currentRoom.transform.Find("Doors").transform.Find("BottomDoor").transform.Find("BottomStatusIndicator").GetComponent<SpriteRenderer>().color = Color.red;
+            currentRoom.transform.Find("Doors").transform.Find("LeftDoor").transform.Find("LeftStatusIndicator").GetComponent<SpriteRenderer>().color = Color.red;
+            currentRoom.transform.Find("Doors").transform.Find("RightDoor").transform.Find("RightStatusIndicator").GetComponent<SpriteRenderer>().color = Color.red;
             CurrentSkeletonEnemy = Instantiate(skeletonEnemy); // make this based on the current room position
             CurrentSkeletonEnemy.transform.position = new Vector3(currentRoom.transform.position.x + (Random.Range(7, -7)), currentRoom.transform.position.y + (Random.Range(3, -3)), currentRoom.transform.position.z);
             SkeletonHealthManager = CurrentSkeletonEnemy.GetComponent<HealthManager>();
@@ -232,10 +240,10 @@ public class RoomFunctions : MonoBehaviour
             currentRoomId = currentRoom.GetComponent<RoomIdentifier>().roomID;
             ClearedRooms.Add(currentRoomId);
             currentRoom.GetComponent<RoomCounter>().hasCleared = true;
-            currentRoom.transform.Find("Walls").transform.Find("TopWall").GetComponent<SpriteRenderer>().color = Color.yellow;
-            currentRoom.transform.Find("Walls").transform.Find("BottomWall").GetComponent<SpriteRenderer>().color = Color.yellow;
-            currentRoom.transform.Find("Walls").transform.Find("LeftWall").GetComponent<SpriteRenderer>().color = Color.yellow;
-            currentRoom.transform.Find("Walls").transform.Find("RightWall").GetComponent<SpriteRenderer>().color = Color.yellow;
+            currentRoom.transform.Find("Doors").transform.Find("TopDoor").transform.Find("TopStatusIndicator").GetComponent<SpriteRenderer>().color = Color.green;
+            currentRoom.transform.Find("Doors").transform.Find("BottomDoor").transform.Find("BottomStatusIndicator").GetComponent<SpriteRenderer>().color = Color.green;
+            currentRoom.transform.Find("Doors").transform.Find("LeftDoor").transform.Find("LeftStatusIndicator").GetComponent<SpriteRenderer>().color = Color.green;
+            currentRoom.transform.Find("Doors").transform.Find("RightDoor").transform.Find("RightStatusIndicator").GetComponent<SpriteRenderer>().color = Color.green;
             CurrentScore += 1;
             CurrentScore.ToString();
             

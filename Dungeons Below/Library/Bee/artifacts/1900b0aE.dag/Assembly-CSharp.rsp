@@ -384,6 +384,7 @@
 "Assets/Scripts/Enemies/Spawning.cs"
 "Assets/Scripts/Player/BossHealthManager.cs"
 "Assets/Scripts/Player/BoundaryController.cs"
+"Assets/Scripts/Player/DashAbility.cs"
 "Assets/Scripts/Player/HealthManager.cs"
 "Assets/Scripts/Player/ManaManager.cs"
 "Assets/Scripts/Player/PlayerController.cs"

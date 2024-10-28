@@ -24,6 +24,13 @@ public class PlayerController : MonoBehaviour
     public Transform bulletTransform; // bullet prefab
     public float yRange = 7f;
     public float xRange = 7;
+
+    // Dash variables
+    [SerializeField] float dashSpeed = 10f;
+    [SerializeField] float dashDuration = 1f;
+    [SerializeField] float dashCooldown = 1f;
+    bool isDashing;
+
    
     private Rigidbody2D rb; // Rigidbody
 
@@ -50,13 +57,18 @@ public class PlayerController : MonoBehaviour
     void Update()
 
     {   
-    
 
         if (Input.GetKeyDown(KeyCode.Escape)) // If Escape is pressed
         {
             pauseMenu.SetActive(true); // Enable Pause Menu
             Time.timeScale = 0; // Freezes Game
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine("Dash");
+        }
+
 
        
 
@@ -84,8 +96,14 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate () 
     {
+        if (isDashing)
+        {
+            return;
+        }        
         rb.velocity = moveDirection * moveSpeed; // sets rb velocity consistently
         ActiveSpeed = rb.velocity;
+
+
     }
 
    
@@ -106,5 +124,13 @@ public class PlayerController : MonoBehaviour
             manaManager.ManaDrain(100);
             Instantiate(secondaryBulletPrefab, bulletTransform.position, Quaternion.identity);
         }
+    }
+
+    private IEnumerator Dash() 
+    {
+        isDashing = true;
+        rb.velocity = new Vector2(moveDirection.x * dashSpeed, moveDirection.y * dashSpeed);
+        yield return new WaitForSeconds(dashDuration);
+        isDashing = false;
     }
 }
