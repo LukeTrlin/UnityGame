@@ -7,10 +7,14 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 
 {
+    [SerializeField] GameObject Loading;
     public Vector2 ActiveSpeed;
 
     public GameObject StaticPlayer;
+
+    public static bool PauseOpened;
     [SerializeField] GameObject pauseMenu; // Pause Menu Object
+    
 
     //movement 
     
@@ -38,6 +42,8 @@ public class PlayerController : MonoBehaviour
     
     private Vector2 moveDirection; // Direction currently moving
 
+    
+
     // Attack Variables
     [SerializeField] private Rigidbody2D bulletPrefab; // Bullet Rigidbody
     [SerializeField] private Rigidbody2D secondaryBulletPrefab; // Bullet Rigidbody
@@ -55,13 +61,19 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-
+    
     {   
 
         if (Input.GetKeyDown(KeyCode.Escape)) // If Escape is pressed
         {
-            pauseMenu.SetActive(true); // Enable Pause Menu
-            Time.timeScale = 0; // Freezes Game
+            if (LoadingScript.IsLoading == false)
+            {
+                PauseOpened = true;
+                 pauseMenu.SetActive(true); // Enable Pause Menu
+                Time.timeScale = 0; // Freezes Game
+
+            }
+           
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -112,8 +124,13 @@ public class PlayerController : MonoBehaviour
 
         if (manaManager.ManaAmount >= 20) // check if enough mana
         {
-            manaManager.ManaDrain(20); // Drain Mana, Sends to ManaManager
-            Instantiate(bulletPrefab, bulletTransform.position, Quaternion.identity); // Clones bullet prefab anmd fires
+            if (PauseOpened == false)
+            {
+                manaManager.ManaDrain(20); // Drain Mana, Sends to ManaManager
+                Instantiate(bulletPrefab, bulletTransform.position, Quaternion.identity); // Clones bullet prefab anmd fires
+
+            }
+
         }
     }
 
@@ -128,9 +145,14 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator Dash() 
     {
-        isDashing = true;
-        rb.velocity = new Vector2(moveDirection.x * dashSpeed, moveDirection.y * dashSpeed);
-        yield return new WaitForSeconds(dashDuration);
-        isDashing = false;
+        if (manaManager.ManaAmount >= 15)
+        {
+            isDashing = true;
+            rb.velocity = new Vector2(moveDirection.x * dashSpeed, moveDirection.y * dashSpeed);
+            manaManager.ManaDrain(15); // Drain Mana, Sends to ManaManager
+            yield return new WaitForSeconds(dashDuration);
+            isDashing = false;
+        }
+        
     }
 }

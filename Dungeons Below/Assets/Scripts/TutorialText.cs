@@ -13,6 +13,12 @@ public class TutorialText : MonoBehaviour
     public bool detector = false;
     public bool detector2 = false;
     public bool detector3 = false;
+
+    public bool detector4 = false;
+
+    public bool detector5 = false;
+
+
     public GameObject enemy;
     public HealthManager SkeletonHealthManager;
     // Start is called before the first frame update
@@ -42,7 +48,22 @@ public class TutorialText : MonoBehaviour
             if (detector2 == true)
             {
                 detector2 = false;
+                
+
                 StartCoroutine("LoadText3");
+                
+            }
+         }
+
+         
+         if (Input.GetMouseButtonDown(1)) 
+         {
+            if (detector4 == true)
+            {
+                detector4 = false;
+                
+
+                StartCoroutine("LoadText4");
                 
             }
          }
@@ -53,11 +74,22 @@ public class TutorialText : MonoBehaviour
             if (detector3 == true)
             {
                 detector3 = false;
-                StartCoroutine("LoadText4");
+                StartCoroutine("LoadText5");
             }
             
-
          }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (detector5 == true)
+            {
+                detector5 = false;
+                StartCoroutine("LoadText6");
+                
+            }
+
+        }
+
     }
 
     public IEnumerator LoadText()
@@ -82,6 +114,16 @@ public class TutorialText : MonoBehaviour
     }
     public IEnumerator LoadText3()
     {
+        text.text = "Now Press Right Click to fire a massive attack";
+        yield return new WaitForSeconds(1);
+        detector4 = true;
+
+
+        
+
+    }
+     public IEnumerator LoadText4()
+    {
         yield return new WaitForSeconds (3);
         text.text= "To aim, move your cursor where you want to fire";
         yield return new WaitForSeconds (3);
@@ -91,7 +133,17 @@ public class TutorialText : MonoBehaviour
 
     }
 
-    public IEnumerator LoadText4()
+    public IEnumerator LoadText5()
+    {
+        yield return new WaitForSeconds (3);
+        text.text= " Nice! Now press SPACEBAR to dash the direction you are facing";
+        yield return new WaitForSeconds (1);
+        detector5 = true;
+        
+
+    }
+
+    public IEnumerator LoadText6()
     {
         yield return new WaitForSeconds (3);
         text.text= "Congratulations you have passed Dungeons Below 101";

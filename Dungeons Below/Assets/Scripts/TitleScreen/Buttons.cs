@@ -7,9 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
-    public GameObject AudioManagers;
-    private AudioSource audioSource;
-    public GameObject ScriptManager;
+    
+   
     // All Functions for seperate buttons
 
     [SerializeField] GameObject pauseMenu;
@@ -17,15 +16,16 @@ public class Buttons : MonoBehaviour
 
     void Awake()
     {
-        DontDestroyOnLoad(AudioManagers);
-        DontDestroyOnLoad(ScriptManager);
-        audioSource = AudioManagers.GetComponent<AudioSource>();
+      
+        
+       
         
 
 
     }
     public void Begin() // load / restart game
     {
+        PlayerController.PauseOpened = false;
         SceneManager.LoadScene(3);
         RoomFunctions.CurrentScore = 0;
         HealthManager.BaseDamage = 20;
@@ -40,6 +40,7 @@ public class Buttons : MonoBehaviour
 
     public void Options() // options
     {
+        
         SceneManager.LoadScene(4);
         
         
@@ -47,13 +48,14 @@ public class Buttons : MonoBehaviour
 
     public void Resume() // resume
     {
+        PlayerController.PauseOpened = false;
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
     }
 
     public void Title() // title
     {
-        
+        PlayerController.PauseOpened = false;
         SceneManager.LoadScene(0);
         Time.timeScale = 0;
         

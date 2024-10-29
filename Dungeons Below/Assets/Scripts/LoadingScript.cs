@@ -9,6 +9,8 @@ public class LoadingScript : MonoBehaviour
     public GameObject Slider;
     public GameObject Text;
     public GameObject audioSource;
+
+    public static bool IsLoading = false;
     
     // Start is called before the first frame update
     void Start()
@@ -18,6 +20,7 @@ public class LoadingScript : MonoBehaviour
 
     void Awake()
     {
+        IsLoading = true;
         PlayerUI.SetActive(false);
         Text.SetActive(true);
         Slider.SetActive(true); 
@@ -35,6 +38,7 @@ public class LoadingScript : MonoBehaviour
         Slider.SetActive(false);
         PlayerUI.SetActive(true);
         Instantiate(audioSource);
+        IsLoading = false;
 
     }
 }
