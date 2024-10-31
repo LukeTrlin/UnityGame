@@ -24,7 +24,7 @@ public class RoomFunctions : MonoBehaviour
     public int ActiveEnemies;
     public int MaxEnemyCount = 5;
     public int MinEnemyCount = 2;
-
+    private PlayerDamageController playerDamageController;
     
     public TMP_Text highscore;
 
@@ -50,6 +50,7 @@ public class RoomFunctions : MonoBehaviour
     public Image HealthBar; // HealthBar
 
     public bool spawnController = true;
+    public Transform parent;
 
     public int BossAmount;
     public bool CanBossSpawn = true;
@@ -74,9 +75,8 @@ public class RoomFunctions : MonoBehaviour
             CurrentScore = 0;
            
         }
-        
-        
-        
+
+        playerDamageController = player.GetComponent<PlayerDamageController>();
     }
 
     // Update is called once per frame
@@ -88,13 +88,6 @@ public class RoomFunctions : MonoBehaviour
 
     void Update()
     {
-
-        if (Input.GetKey(KeyCode.R))
-        {
-            SceneManager.LoadScene(3);
-
-
-        }
 
         if (BossDead == true)
         {
@@ -231,8 +224,6 @@ public class RoomFunctions : MonoBehaviour
 
     public void OnRoomLoad() // Everything that should be done when the player enters a new room
     {
-          
-            
             TotalEnemyCount = Random.Range(MinEnemyCount, MaxEnemyCount);
             ActiveEnemies = TotalEnemyCount;
             currentRoomId = currentRoom.GetComponent<RoomIdentifier>().roomID;
@@ -278,6 +269,7 @@ public class RoomFunctions : MonoBehaviour
             currentRoom.transform.Find("Doors").transform.Find("LeftDoor").transform.Find("LeftStatusIndicator").GetComponent<SpriteRenderer>().color = Color.green;
             currentRoom.transform.Find("Doors").transform.Find("RightDoor").transform.Find("RightStatusIndicator").GetComponent<SpriteRenderer>().color = Color.green;
             CurrentScore += 1;
+            playerDamageController.PlayerHealOnRoomClear();
             CurrentScore.ToString();
             
             spawnController = true;
@@ -293,8 +285,6 @@ public class RoomFunctions : MonoBehaviour
         ActiveBoss.transform.position = new Vector3(currentRoom.transform.position.x, currentRoom.transform.position.y - 3, 0);
         BossHealthManager = CurrentSkeletonEnemy.GetComponent<HealthManager>();
         HealthBar = BossHealthManager.HealthBar;
-       
-        
         }
 
         
@@ -310,7 +300,7 @@ public class RoomFunctions : MonoBehaviour
     public IEnumerator AddFloorChangeItem()
     {
         
-        
+        CurrentScore += 3;
         yield return new WaitForSeconds(3);
         ActiveFloorChanger = Instantiate(FloorChanger);
         ActiveFloorChanger.transform.position = new Vector3(currentRoom.transform.position.x, currentRoom.transform.position.y, 0);

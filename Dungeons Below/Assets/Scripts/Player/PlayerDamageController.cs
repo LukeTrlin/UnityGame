@@ -9,6 +9,10 @@ public class PlayerDamageController : MonoBehaviour
 {
     public Image PlayerHealthBar; // HealthBar Image
     public float PlayerHealthAmount;
+    public TMP_Text ShowHealthNumbers;
+    public static float PlayerMaxHealth = 100;
+    public static float SkeletonDamage = 10;
+    public static float SlimeDamage = 20;
     Renderer rend; // Renderer
     Color c; // Color
    
@@ -16,7 +20,7 @@ public class PlayerDamageController : MonoBehaviour
     {
         rend = GetComponent<Renderer> (); // Defines Renderer
         c = rend.material.color; // Defines Colour
-        PlayerHealthAmount = 100;
+        PlayerHealthAmount = PlayerMaxHealth;
         Physics2D.IgnoreLayerCollision (7, 8, false);
     }
 
@@ -26,12 +30,24 @@ public class PlayerDamageController : MonoBehaviour
         {
             PlayerDied();
         }
+        ShowHealthNumbers.text = $"{PlayerHealthAmount} / {PlayerMaxHealth}";
     }
 
     public void PlayerTakeDamage(float damage)
     {
         PlayerHealthAmount -= damage; // Subtracts Damage from health
-        PlayerHealthBar.fillAmount = PlayerHealthAmount / 100; // Updates healthbar
+        PlayerHealthBar.fillAmount = PlayerHealthAmount / PlayerMaxHealth; // Updates healthbar
+    }
+
+    
+    public void PlayerHeal(float heal)
+    {
+        PlayerHealthAmount += heal; // Adds heal to health
+        PlayerHealthBar.fillAmount = PlayerHealthAmount / PlayerMaxHealth;
+        if (PlayerHealthAmount > PlayerMaxHealth)
+        {
+            PlayerHealthAmount = PlayerMaxHealth;
+        }
     }
    
 
@@ -39,13 +55,12 @@ public class PlayerDamageController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Slime" || collision.gameObject.tag == "Skeleton") // If Collides with Enemies
         {
-                Debug.Log("Collision Detected. Player takes damage");
-                PlayerTakeDamage(10); // Player Takes Damage
+                PlayerTakeDamage(SkeletonDamage); // Player Takes Damage
                 StartCoroutine ("Iframes"); // begins IFrames
         }   
         else if (collision.gameObject.tag == "BossEnemy")
         {
-            PlayerTakeDamage(20); // Boss deals more damage than a regular enemy
+            PlayerTakeDamage(SlimeDamage); // Boss deals more damage than a regular enemy
             StartCoroutine ("Iframes"); // Begins Iframes coroutine
         }
     }
@@ -66,5 +81,10 @@ public class PlayerDamageController : MonoBehaviour
         Debug.Log("PlayerDied");
         PlayerHealthAmount = 100;
         SceneManager.LoadScene(2);
+    }
+
+    public void PlayerHealOnRoomClear()
+    {
+        PlayerHeal(10);
     }
 }

@@ -14,7 +14,7 @@ public class SecondaryBullet : MonoBehaviour
 
 
     [SerializeField] private float speed = 7.5f; // rate it fires
-    [SerializeField] private float lifeTime = 7.5f; // how long it lives
+    [SerializeField] private float lifeTime = 5f; // how long it lives
 
     
 

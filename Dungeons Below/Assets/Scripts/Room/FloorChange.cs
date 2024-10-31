@@ -7,7 +7,6 @@ public class FloorChange : MonoBehaviour
 {
     private RoomFunctions roomFunctions;
     [SerializeField] public static int floorsCleared;
-
     private static bool KeepMultiplier = false;
     
 
@@ -30,13 +29,14 @@ public class FloorChange : MonoBehaviour
     // Start is called before the first frame update
     void OnTriggerStay2D (Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player") // Floor difficulty scaling
         {
-                HealthManager.BaseDamage = HealthManager.BaseDamage * 0.75f;
-                HealthManager.SecondaryBaseDamage = HealthManager.SecondaryBaseDamage * 0.75f;
-                
-                BossHealthManager.BaseDamageBoss = BossHealthManager.BaseDamageBoss * 0.75f;
-               BossHealthManager.SecondaryBaseDamageBoss = BossHealthManager.SecondaryBaseDamageBoss * 0.75f;
+                BossHealthManager.BossMaxHealth = BossHealthManager.BossMaxHealth * 1.25f;
+                HealthManager.EnemyMaxHealth = HealthManager.EnemyMaxHealth * 1.25f;
+                PlayerDamageController.PlayerMaxHealth += 20;
+                ManaManager.MaxManaAmount += 10;
+                PlayerDamageController.SkeletonDamage = PlayerDamageController.SkeletonDamage * 1.25f;
+                PlayerDamageController.SlimeDamage = PlayerDamageController.SlimeDamage * 1.25f;
                 
                 FloorMultiplier.floorsCleared += 1;
                 FloorMultiplier.KeepMultiplier = true;
@@ -44,11 +44,6 @@ public class FloorChange : MonoBehaviour
                 RoomFunctions.Keepscore = true;
                 SceneManager.LoadScene(3);
                 Debug.Log("Player Reached the end, reloading floors");
-
-
-
-            
-            
         }
     }
 }

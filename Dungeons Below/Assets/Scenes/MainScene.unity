@@ -680,8 +680,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: add8afc9d3ed30e46a42e4e22a4a105d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AudioManagers: {fileID: 0}
-  ScriptManager: {fileID: 0}
   pauseMenu: {fileID: 1343788796}
 --- !u!114 &536474700
 MonoBehaviour:
@@ -883,7 +881,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ea6a7b6e48b154b9c06b2dd63bb99b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  volumeSlider: {fileID: 592890273}
 --- !u!114 &592890272
 MonoBehaviour:
   m_ObjectHideFlags: 0

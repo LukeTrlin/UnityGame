@@ -6,19 +6,20 @@ public class BossHealthManager : MonoBehaviour
 {
 
     public Image HealthBar; // Image Objects
-    public float BossHealthAmount = 100f; // HealthAmount
+    public static float BossMaxHealth = 1000;
+    public float BossHealthAmount; // HealthAmount
     
     
     public GameObject Player;
     [SerializeField] public float PrimaryBulletDamageBoss;
     [SerializeField] public float SecondaryBulletDamageBoss;
 
-    public static float BaseDamageBoss = 2;
-    public static float SecondaryBaseDamageBoss = 8;
+    public static float BaseDamageBoss = 20;
+    public static float SecondaryBaseDamageBoss = 80;
 
     void Start()
     {
-
+        BossHealthAmount = BossMaxHealth;
         PrimaryBulletDamageBoss = BaseDamageBoss;
         SecondaryBulletDamageBoss = SecondaryBaseDamageBoss;
 
@@ -41,7 +42,7 @@ public class BossHealthManager : MonoBehaviour
     public void TakeDamage(float damage)
     {
         BossHealthAmount -= damage; // Subtracts Damage from health
-        HealthBar.fillAmount = BossHealthAmount / 100; // Updates healthbar
+        HealthBar.fillAmount = BossHealthAmount / BossMaxHealth; // Updates healthbar
     }
 
 
@@ -53,7 +54,7 @@ public class BossHealthManager : MonoBehaviour
         
         if (collision.gameObject.tag == "Bullet") // Detects If the object collided with has the tag "Bullet
         {
-            TakeDamage(PrimaryBulletDamageBoss); // Deals 20 Damage
+            TakeDamage(PrimaryBulletDamageBoss);
         }
 
         if (collision.gameObject.tag == "SecondaryBullet")

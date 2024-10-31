@@ -5,7 +5,13 @@ using UnityEngine.UI;
 public class ManaManager : MonoBehaviour
 {
     public Image ManaBar; // mana bar
-    public float ManaAmount = 100f; // Max Mana
+    public float ManaAmount; // Max Mana
+    public static float MaxManaAmount = 100;
+
+    void Start ()
+    {
+        ManaAmount = MaxManaAmount;
+    }
      
     void FixedUpdate()
     {
@@ -22,14 +28,14 @@ public class ManaManager : MonoBehaviour
     public void ManaDrain(float manacost) // Mana Drain Function
     {
         ManaAmount -= manacost; // Subtract manacost from mana
-        ManaBar.fillAmount = ManaAmount / 100f; // update manabar
+        ManaBar.fillAmount = ManaAmount / MaxManaAmount; // update manabar
     }
 
     public void ManaRestore(float ManaRestore) // mana restore function
     {
         ManaAmount += ManaRestore; // adds mana restore amount to mana
-        ManaBar.fillAmount = ManaAmount / 100f;
-        ManaAmount = Mathf.Clamp(ManaAmount, 0, 100); // updates mana amount
+        ManaBar.fillAmount = ManaAmount / MaxManaAmount;
+        ManaAmount = Mathf.Clamp(ManaAmount, 0, MaxManaAmount); // updates mana amount
         
 
          // updates manabar

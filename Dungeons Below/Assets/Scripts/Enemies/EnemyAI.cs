@@ -30,4 +30,12 @@ public class EnemyAI : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime); // Move to Target
         }
     }
+
+    void OnTriggerEnter2D (Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet" || collision.gameObject.tag == "SecondaryBullet")
+        {
+            EnemyAggro = true; // Sets the aggro to true when the enemy takes damage
+        }
+    }
 }

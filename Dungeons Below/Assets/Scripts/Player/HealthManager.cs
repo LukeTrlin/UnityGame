@@ -6,7 +6,8 @@ public class HealthManager : MonoBehaviour
 {
 
     public Image HealthBar; // Image Objects
-    public float HealthAmount = 100f; // HealthAmount
+    public static float EnemyMaxHealth = 100;
+    public float HealthAmount; // HealthAmount
     [SerializeField] public float PrimaryBulletDamage;
     [SerializeField] public float SecondaryBulletDamage;
 
@@ -17,6 +18,11 @@ public class HealthManager : MonoBehaviour
 
     public float visualDamage;
     public float SecondaryvisualDamage;
+
+    void Start ()
+    {
+        HealthAmount = EnemyMaxHealth;
+    }
     
 
     void Update()
@@ -37,7 +43,7 @@ public class HealthManager : MonoBehaviour
     public void TakeDamage(float damage)
     {
         HealthAmount -= damage; // Subtracts Damage from health
-        HealthBar.fillAmount = HealthAmount / 100; // Updates healthbar
+        HealthBar.fillAmount = HealthAmount / EnemyMaxHealth; // Updates healthbar
     }
 
 
