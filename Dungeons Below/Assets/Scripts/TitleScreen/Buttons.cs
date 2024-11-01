@@ -28,10 +28,12 @@ public class Buttons : MonoBehaviour
         PlayerController.PauseOpened = false;
         SceneManager.LoadScene(3);
         RoomFunctions.CurrentScore = 0;
-        HealthManager.BaseDamage = 20;
-        HealthManager.SecondaryBaseDamage= 100;
-        BossHealthManager.BaseDamageBoss = 2;
-        BossHealthManager.SecondaryBaseDamageBoss = 8;
+        BossHealthManager.BossMaxHealth = 1000;
+        HealthManager.EnemyMaxHealth = 100;
+        PlayerDamageController.PlayerMaxHealth = 100;
+        ManaManager.MaxManaAmount = 100;
+        PlayerDamageController.SkeletonDamage = 10;
+        PlayerDamageController.SlimeDamage = 20;
         
         Time.timeScale = 1;
         

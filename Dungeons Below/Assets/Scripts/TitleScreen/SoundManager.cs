@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
-    public static Slider volumeSlider;
+    public Slider volumeSlider;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,15 +22,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            
-            SceneManager.LoadScene(0);
-            
-        }
-    }
+
 
     public void ChangeVolume()
     {

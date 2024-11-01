@@ -126,8 +126,12 @@ public class PlayerController : MonoBehaviour
         {
             if (PauseOpened == false)
             {
-                manaManager.ManaDrain(20); // Drain Mana, Sends to ManaManager
+                if (LoadingScript.IsLoading == false)
+                {
+                    manaManager.ManaDrain(20); // Drain Mana, Sends to ManaManager
                 Instantiate(bulletPrefab, bulletTransform.position, Quaternion.identity); // Clones bullet prefab anmd fires
+                }
+                
 
             }
 
@@ -138,8 +142,17 @@ public class PlayerController : MonoBehaviour
     {
         if (manaManager.ManaAmount >= 100) // checks if 50 mana is available
         {
-            manaManager.ManaDrain(100);
-            Instantiate(secondaryBulletPrefab, bulletTransform.position, Quaternion.identity);
+             if (PauseOpened == false)
+            {
+                if (LoadingScript.IsLoading == false)
+                {
+                    manaManager.ManaDrain(100);
+                    Instantiate(secondaryBulletPrefab, bulletTransform.position, Quaternion.identity);
+                }
+                
+            }
+
+            
         }
     }
 
@@ -147,11 +160,26 @@ public class PlayerController : MonoBehaviour
     {
         if (manaManager.ManaAmount >= 15)
         {
-            isDashing = true;
-            rb.velocity = new Vector2(moveDirection.x * dashSpeed, moveDirection.y * dashSpeed);
-            manaManager.ManaDrain(15); // Drain Mana, Sends to ManaManager
-            yield return new WaitForSeconds(dashDuration);
-            isDashing = false;
+             if (PauseOpened == false)
+             {
+                if (LoadingScript.IsLoading == false)
+                {
+                    isDashing = true;
+                rb.velocity = new Vector2(moveDirection.x * dashSpeed, moveDirection.y * dashSpeed);
+                manaManager.ManaDrain(15); // Drain Mana, Sends to ManaManager
+                yield return new WaitForSeconds(dashDuration);
+                isDashing = false;
+
+
+                }
+
+
+
+                
+
+
+             }
+            
         }
         
     }

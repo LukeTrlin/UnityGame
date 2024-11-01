@@ -303,7 +303,7 @@ public class RoomFunctions : MonoBehaviour
         CurrentScore += 3;
         yield return new WaitForSeconds(3);
         ActiveFloorChanger = Instantiate(FloorChanger);
-        ActiveFloorChanger.transform.position = new Vector3(currentRoom.transform.position.x, currentRoom.transform.position.y, 0);
+        ActiveFloorChanger.transform.position = new Vector3(currentRoom.transform.position.x, currentRoom.transform.position.y, -1);
     }
 
     public IEnumerator Waiter()

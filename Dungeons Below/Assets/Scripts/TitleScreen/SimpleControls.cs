@@ -7,8 +7,13 @@ public class SimpleControls : MonoBehaviour
 {
     public AudioClip music;
     
-    void Update()
+       void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            
+            SceneManager.LoadScene(0);
+            
+        }
     }
 }

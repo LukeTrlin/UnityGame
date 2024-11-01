@@ -146,6 +146,20 @@ public class TutorialText : MonoBehaviour
     public IEnumerator LoadText6()
     {
         yield return new WaitForSeconds (3);
+        text.text= "When Attacking and Dashing, the blue bar will go down, that is called your mana";
+        yield return new WaitForSeconds (5);
+        text.text= "If you don't have enough mana you can't attack/dodge";
+        yield return new WaitForSeconds (5);
+        text.text= "Your Health will go down when you are attacked";
+        yield return new WaitForSeconds (5);
+        text.text= "You will gain health for clearing rooms, and killing a boss";
+        yield return new WaitForSeconds (5);
+        text.text= "Every floor, your overall health and mana will increase";
+        yield return new WaitForSeconds (5);
+        text.text= "For Every room cleared, you get 1 score, for a boss room, you get 3";
+        yield return new WaitForSeconds (5);
+        text.text= "Beware, Difficulty scales with every floor";
+        yield return new WaitForSeconds (5);
         text.text= "Congratulations you have passed Dungeons Below 101";
         yield return new WaitForSeconds (5);
         text.text= "I wish you good luck on your adventure!";
