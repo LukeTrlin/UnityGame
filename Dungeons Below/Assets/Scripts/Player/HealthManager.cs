@@ -5,6 +5,9 @@ using UnityEngine.UI;
 public class HealthManager : MonoBehaviour
 {
 
+    public AudioSource hit;
+    public AudioSource die;
+
     public Image HealthBar; // Image Objects
     public static float EnemyMaxHealth = 100;
     public float HealthAmount; // HealthAmount
@@ -31,6 +34,7 @@ public class HealthManager : MonoBehaviour
         SecondaryvisualDamage = SecondaryBaseDamage;
         if (HealthAmount <= 0) 
         {
+            Instantiate(die);
             Destroy(gameObject);
         }
 
@@ -42,6 +46,7 @@ public class HealthManager : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        
         HealthAmount -= damage; // Subtracts Damage from health
         HealthBar.fillAmount = HealthAmount / EnemyMaxHealth; // Updates healthbar
     }
@@ -56,12 +61,13 @@ public class HealthManager : MonoBehaviour
         if (collision.gameObject.tag == "Bullet") // Detects If the object collided with has the tag "Bullet
         {
             
-            
+            Instantiate(hit);
             TakeDamage(PrimaryBulletDamage); // Deals 20 Damage
         }
 
         if (collision.gameObject.tag == "SecondaryBullet")
         {
+            Instantiate(hit);
             TakeDamage(SecondaryBulletDamage);
         }
     }

@@ -456,6 +456,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd0f98c3ddce2d4d84ddefba178d851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hit: {fileID: 7416076816966812790, guid: 1bb8780f216f0f24da69fcab72ec69ff, type: 3}
+  die: {fileID: 7416076816966812790, guid: 12739493d04a70744879247e41c5289c, type: 3}
   HealthBar: {fileID: 3113406382540035775}
   BossHealthAmount: 100
   Player: {fileID: 6231354170136113626, guid: e0ab86a33d998264c89e26ac894fcd20, type: 3}

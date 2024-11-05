@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 public class BossHealthManager : MonoBehaviour
 {
+    public AudioSource hit;
+    public AudioSource die;
 
     public Image HealthBar; // Image Objects
-    public static float BossMaxHealth = 1000;
+    public static float BossBaseHealth = 1000;
     public float BossHealthAmount; // HealthAmount
     
     
@@ -19,7 +21,7 @@ public class BossHealthManager : MonoBehaviour
 
     void Start()
     {
-        BossHealthAmount = BossMaxHealth;
+        BossHealthAmount = BossBaseHealth;
         PrimaryBulletDamageBoss = BaseDamageBoss;
         SecondaryBulletDamageBoss = SecondaryBaseDamageBoss;
 
@@ -30,6 +32,7 @@ public class BossHealthManager : MonoBehaviour
         
         if (BossHealthAmount <= 1) 
         {
+            Instantiate(die);
             RoomFunctions.BossDead = true;
             Debug.Log("Boss Died");
             Destroy(gameObject);
@@ -42,7 +45,7 @@ public class BossHealthManager : MonoBehaviour
     public void TakeDamage(float damage)
     {
         BossHealthAmount -= damage; // Subtracts Damage from health
-        HealthBar.fillAmount = BossHealthAmount / BossMaxHealth; // Updates healthbar
+        HealthBar.fillAmount = BossHealthAmount / BossBaseHealth; // Updates healthbar
     }
 
 
@@ -54,11 +57,13 @@ public class BossHealthManager : MonoBehaviour
         
         if (collision.gameObject.tag == "Bullet") // Detects If the object collided with has the tag "Bullet
         {
+            Instantiate(hit);
             TakeDamage(PrimaryBulletDamageBoss);
         }
 
         if (collision.gameObject.tag == "SecondaryBullet")
         {
+            Instantiate(hit);
             TakeDamage(SecondaryBulletDamageBoss);
         }
     }

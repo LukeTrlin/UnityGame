@@ -7,13 +7,16 @@ using TMPro;
 public class PlayerController : MonoBehaviour
 
 {
+    public AudioSource ShootSound;
+
+    
     [SerializeField] GameObject Loading;
     public Vector2 ActiveSpeed;
 
     public GameObject StaticPlayer;
 
     public static bool PauseOpened;
-    [SerializeField] GameObject pauseMenu; // Pause Menu Object
+    [SerializeField] GameObject PauseMenu; // Pause Menu Object
     
 
     //movement 
@@ -69,7 +72,19 @@ public class PlayerController : MonoBehaviour
             if (LoadingScript.IsLoading == false)
             {
                 PauseOpened = true;
-                 pauseMenu.SetActive(true); // Enable Pause Menu
+                 PauseMenu.SetActive(true); // Enable Pause Menu
+                Time.timeScale = 0; // Freezes Game
+
+            }
+           
+        }
+
+        if (Input.GetKeyDown(KeyCode.P)) // If Escape is pressed
+        {
+            if (LoadingScript.IsLoading == false)
+            {
+                PauseOpened = true;
+                 PauseMenu.SetActive(true); // Enable Pause Menu
                 Time.timeScale = 0; // Freezes Game
 
             }
@@ -94,11 +109,43 @@ public class PlayerController : MonoBehaviour
         // FIRING MECHANICS
 
         if (Input.GetMouseButtonDown(0)) {
-            shoot(); // Sends to shoot function
+
+            if (manaManager.ManaAmount >= 20) // check if enough mana
+        {
+            if (PauseOpened == false)
+            {
+                if (LoadingScript.IsLoading == false)
+                {
+                    
+                     Shoot(); // Sends to shoot function
+                }
+                
+
+            }
+
+        }
+
+        
+    
+           
         }
 
         else if (Input.GetMouseButtonDown(1)) {
-            SecondaryShoot();
+            if (manaManager.ManaAmount >= 20) // check if enough mana
+        {
+            if (PauseOpened == false)
+            {
+                if (LoadingScript.IsLoading == false)
+                {
+                    
+                    SecondaryShoot();
+                }
+                
+
+            }
+
+        }
+            
         }
 
 
@@ -120,22 +167,17 @@ public class PlayerController : MonoBehaviour
 
    
     
-    public void shoot () {
+    public void Shoot () {
 
-        if (manaManager.ManaAmount >= 20) // check if enough mana
-        {
-            if (PauseOpened == false)
-            {
-                if (LoadingScript.IsLoading == false)
-                {
-                    manaManager.ManaDrain(20); // Drain Mana, Sends to ManaManager
-                Instantiate(bulletPrefab, bulletTransform.position, Quaternion.identity); // Clones bullet prefab anmd fires
-                }
+        
+           
+                    
+        manaManager.ManaDrain(20); // Drain Mana, Sends to ManaManager
+        Instantiate(bulletPrefab, bulletTransform.position, Quaternion.identity); // Clones bullet prefab anmd fires
+                
                 
 
-            }
-
-        }
+           
     }
 
     public void SecondaryShoot()

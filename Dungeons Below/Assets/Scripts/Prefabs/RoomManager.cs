@@ -10,8 +10,8 @@ public class RoomManager : MonoBehaviour
     [SerializeField] GameObject startPrefab;        // Prefab for the starting room
     [SerializeField] GameObject bossRoomPrefab;     // Prefab for the boss room
 
-    [SerializeField] private int maxRooms = 15;     // Maximum number of rooms allowed
-    [SerializeField] private int minRooms = 10;     // Minimum number of rooms required
+    [SerializeField] private int MAXROOMS = 15;     // Maximum number of rooms allowed
+    [SerializeField] private int MINROOMS = 10;     // Minimum number of rooms required
 
     int roomWidth = 40;                              // Width of each room
     int roomHeight = 24;                             // Height of each room
@@ -39,7 +39,7 @@ public class RoomManager : MonoBehaviour
     private void Update() 
     {
         // Continue generating rooms until max limit is reached or generation is complete
-        if(roomQueue.Count > 0 && roomCount < maxRooms && !generationComplete)
+        if(roomQueue.Count > 0 && roomCount < MAXROOMS && !generationComplete)
         {
             Vector2Int roomIndex = roomQueue.Dequeue(); // Get the next room index from the queue
             int gridX = roomIndex.x;
@@ -51,7 +51,7 @@ public class RoomManager : MonoBehaviour
             TryGenerateRoom(new Vector2Int(gridX, gridY + 1)); // Up
             TryGenerateRoom(new Vector2Int(gridX, gridY - 1)); // Down
         }
-        else if (roomCount < minRooms) // If the minimum room count is not met, regenerate
+        else if (roomCount < MINROOMS) // If the minimum room count is not met, regenerate
         {
             RegenerateRooms();
         }
@@ -92,7 +92,7 @@ public class RoomManager : MonoBehaviour
             return false;
 
         // Check if the maximum room count has been reached
-        if(roomCount >= maxRooms)
+        if(roomCount >= MAXROOMS)
             return false;
 
         // Randomly decide whether to generate a room (50% chance) unless it's the initial position

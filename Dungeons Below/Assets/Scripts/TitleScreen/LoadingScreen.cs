@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class LoadingScreen : MonoBehaviour
 {
-    public GameObject gameObject;
+    public GameObject Loading;
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.SetActive(true);
+        Loading.SetActive(true);
     }
 
     // Update is called once per frame
@@ -17,7 +17,7 @@ public class LoadingScreen : MonoBehaviour
     {
         if (Input.GetKeyDown("return"))
         {
-            gameObject.SetActive(false);
+            Loading.SetActive(false);
         }
     }
 }

@@ -141,11 +141,7 @@ public class Respawn : MonoBehaviour
         HealthBar = SlimeHealthManager.HealthBar;
     }
 
-    void SpawnBossEnemy()
-    {
-
-    }
-
+  
   
         public void ReloadEnemies(int min, int max)
         {

@@ -9,11 +9,18 @@ public class SimpleControls : MonoBehaviour
     
        void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            
-            SceneManager.LoadScene(0);
-            
-        }
+        
+    }
+
+
+    public void Title() // title
+    {
+        
+        SceneManager.LoadScene(0);
+        
+        
+        
+        
     }
 }
+

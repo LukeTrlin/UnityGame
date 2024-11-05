@@ -16,6 +16,7 @@ public class Buttons : MonoBehaviour
 
     void Awake()
     {
+
       
         
        
@@ -27,13 +28,7 @@ public class Buttons : MonoBehaviour
     {
         PlayerController.PauseOpened = false;
         SceneManager.LoadScene(3);
-        RoomFunctions.CurrentScore = 0;
-        BossHealthManager.BossMaxHealth = 1000;
-        HealthManager.EnemyMaxHealth = 100;
-        PlayerDamageController.PlayerMaxHealth = 100;
-        ManaManager.MaxManaAmount = 100;
-        PlayerDamageController.SkeletonDamage = 10;
-        PlayerDamageController.SlimeDamage = 20;
+        ResetValues();
         
         Time.timeScale = 1;
         
@@ -44,9 +39,9 @@ public class Buttons : MonoBehaviour
     {
         
         SceneManager.LoadScene(4);
-        
-        
+          
     }
+
 
     public void Resume() // resume
     {
@@ -79,4 +74,18 @@ public class Buttons : MonoBehaviour
 
     }
 
+
+
+    public void ResetValues()
+    {
+        RoomFunctions.CurrentScore = 0;
+        BossHealthManager.BossMaxHealth = 1000;
+        HealthManager.EnemyMaxHealth = 100;
+        PlayerDamageController.PlayerMaxHealth = 100;
+        ManaManager.MaxManaAmount = 100;
+        PlayerDamageController.SkeletonDamage = 10;
+        PlayerDamageController.SlimeDamage = 20;
+
+
+    }
 }

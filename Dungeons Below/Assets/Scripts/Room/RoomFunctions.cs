@@ -13,7 +13,7 @@ using UnityEngine.SceneManagement;
 public class RoomFunctions : MonoBehaviour
 {
     Color c;
-
+    public AudioSource RoomCharm;
     private GameObject CurrentSkeletonEnemy;
     [SerializeField] public string RoomType; // Whether the player is in a basic, spawn, or boss room
     [SerializeField] public bool DoorsLocked = false; // Determines whether the doors are activated or not
@@ -73,6 +73,7 @@ public class RoomFunctions : MonoBehaviour
         if (Keepscore == false)
         {
             CurrentScore = 0;
+            
            
         }
 
@@ -88,6 +89,7 @@ public class RoomFunctions : MonoBehaviour
 
     void Update()
     {
+        
 
         if (BossDead == true)
         {
@@ -260,7 +262,7 @@ public class RoomFunctions : MonoBehaviour
         else if (ActiveEnemies == 0 && RoomType != "SpawnRoom")
         {
             DoorsLocked = false;
-            
+            Instantiate(RoomCharm);
             currentRoomId = currentRoom.GetComponent<RoomIdentifier>().roomID;
             ClearedRooms.Add(currentRoomId);
             currentRoom.GetComponent<RoomCounter>().hasCleared = true;
