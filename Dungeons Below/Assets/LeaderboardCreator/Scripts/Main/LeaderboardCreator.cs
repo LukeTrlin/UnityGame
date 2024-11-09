@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Collections;
 using Dan.Enums;
 using Dan.Models;
 using UnityEngine;
-
+using UnityEngine.SocialPlatforms.Impl;
 using static Dan.ConstantVariables;
 
 namespace Dan.Main
@@ -249,6 +249,7 @@ namespace Dan.Main
             if (string.IsNullOrEmpty(publicKey))
             {
                 LogError("Public key cannot be null or empty!");
+                
                 return;
             }
             
@@ -318,6 +319,7 @@ namespace Dan.Main
         {
             if (!LoggingEnabled) return;
             Debug.LogError($"[LeaderboardCreator] {message}");
+
         }
     }
 }

@@ -16,7 +16,23 @@ public class Buttons : MonoBehaviour
 
     void Awake()
     {
+        if(!PlayerPrefs.HasKey("musicVolume"))
+        {
+            PlayerPrefs.SetFloat("musicVolume", 1);
+            
+        }
 
+        if(!PlayerPrefs.HasKey("effectsVolume"))
+        {
+            PlayerPrefs.SetFloat("effectsVolume", 1);
+            
+        }
+
+        if(!PlayerPrefs.HasKey("overallVolume"))
+        {
+            PlayerPrefs.SetFloat("overallVolume", 1);
+            
+        }
       
         
        
@@ -29,10 +45,11 @@ public class Buttons : MonoBehaviour
         PlayerController.PauseOpened = false;
         SceneManager.LoadScene(3);
         ResetValues();
-        
+        Debug.Log("Pressed Play");
         Time.timeScale = 1;
         
         pauseMenu.SetActive(false);
+        
     }
 
     public void Options() // options

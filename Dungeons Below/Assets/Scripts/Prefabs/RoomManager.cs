@@ -10,8 +10,8 @@ public class RoomManager : MonoBehaviour
     [SerializeField] GameObject startPrefab;        // Prefab for the starting room
     [SerializeField] GameObject bossRoomPrefab;     // Prefab for the boss room
 
-    [SerializeField] private int MAXROOMS = 15;     // Maximum number of rooms allowed
-    [SerializeField] private int MINROOMS = 10;     // Minimum number of rooms required
+    [SerializeField] private const int MAXROOMS = 15;     // Maximum number of rooms allowed
+    [SerializeField] private const int MINROOMS = 10;     // Minimum number of rooms required
 
     int roomWidth = 40;                              // Width of each room
     int roomHeight = 24;                             // Height of each room

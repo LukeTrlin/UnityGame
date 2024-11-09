@@ -8,7 +8,7 @@ public class BossHealthManager : MonoBehaviour
     public AudioSource die;
 
     public Image HealthBar; // Image Objects
-    public static float BossBaseHealth = 1000;
+    public static float BossMaxHealth = 1000;
     public float BossHealthAmount; // HealthAmount
     
     
@@ -21,7 +21,7 @@ public class BossHealthManager : MonoBehaviour
 
     void Start()
     {
-        BossHealthAmount = BossBaseHealth;
+        BossHealthAmount = BossMaxHealth;
         PrimaryBulletDamageBoss = BaseDamageBoss;
         SecondaryBulletDamageBoss = SecondaryBaseDamageBoss;
 
@@ -45,7 +45,7 @@ public class BossHealthManager : MonoBehaviour
     public void TakeDamage(float damage)
     {
         BossHealthAmount -= damage; // Subtracts Damage from health
-        HealthBar.fillAmount = BossHealthAmount / BossBaseHealth; // Updates healthbar
+        HealthBar.fillAmount = BossHealthAmount / BossMaxHealth; // Updates healthbar
     }
 
 

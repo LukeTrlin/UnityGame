@@ -22,22 +22,42 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        volumeSlider.value = volumeSlider.value;
+
         if(!PlayerPrefs.HasKey("musicVolume"))
         {
             PlayerPrefs.SetFloat("musicVolume", 1);
-            Load();
+            LoadMusic();
         }
 
         if(!PlayerPrefs.HasKey("effectsVolume"))
         {
             PlayerPrefs.SetFloat("effectsVolume", 1);
-            Load();
+            LoadEffects();
         }
 
         if(!PlayerPrefs.HasKey("overallVolume"))
         {
             PlayerPrefs.SetFloat("overallVolume", 1);
-            Load();
+            LoadOverall();
+        }
+
+        if(PlayerPrefs.HasKey("musicVolume"))
+        {
+            
+            LoadMusic();
+        }
+
+        if(PlayerPrefs.HasKey("effectsVolume"))
+        {
+            
+            LoadEffects();
+        }
+
+        if(PlayerPrefs.HasKey("overallVolume"))
+        {
+            
+            LoadOverall();
         }
 
 
@@ -45,7 +65,8 @@ public class SoundManager : MonoBehaviour
 
         else
         {
-            Load();
+            
+
         }
     }
 
@@ -72,17 +93,29 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    private void Load()
+    private void LoadOverall()
     {
         volumeSlider.value = PlayerPrefs.GetFloat("overallVolume");
+        
+    }
+
+    private void LoadEffects()
+    {
+        
         Effects.value = PlayerPrefs.GetFloat("effectsVolume");
+       
+    }
+
+    private void LoadMusic()
+    {
+      
         Music.value = PlayerPrefs.GetFloat("musicVolume");
     }
 
     private void SaveOverall()
     {
         PlayerPrefs.SetFloat("overallVolume", volumeSlider.value);
-       
+
     }
 
     private void SaveMusic()
@@ -93,9 +126,9 @@ public class SoundManager : MonoBehaviour
 
     private void SaveEffects()
     {
-      
+
         PlayerPrefs.SetFloat("effectsVolume", Effects.value);
-       
+
     }
-    
+
 }

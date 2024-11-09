@@ -35,9 +35,9 @@ public class RoomFunctions : MonoBehaviour
     public GameObject skeletonEnemy; // Skeleton gameobject
     public GameObject slimeBoss;// Slime gameobject
     public GameObject player; // player gameobject
-    public GameObject CurrentRoom; // The room that the player is currently in
-    public HealthManager SkeletonHealthManager; // Health manager for skeleton
-    public HealthManager BossHealthManager; // Health manager for slime
+    private GameObject CurrentRoom; // The room that the player is currently in
+    private HealthManager SkeletonHealthManager; // Health manager for skeleton
+    private HealthManager BossHealthManager; // Health manager for slime
     public GameObject FloorChanger;
     public GameObject ActiveFloorChanger;
     

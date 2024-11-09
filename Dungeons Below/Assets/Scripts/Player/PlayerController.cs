@@ -173,7 +173,7 @@ public class PlayerController : MonoBehaviour
            
                     
         manaManager.ManaDrain(20); // Drain Mana, Sends to ManaManager
-        Instantiate(bulletPrefab, bulletTransform.position, Quaternion.identity); // Clones bullet prefab anmd fires
+        Instantiate(bulletPrefab, bulletTransform.position, Quaternion.identity); // Clones bullet prefab and fires
                 
                 
 
